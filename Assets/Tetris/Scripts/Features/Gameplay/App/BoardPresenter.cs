@@ -29,8 +29,11 @@ namespace Features.Gameplay.App
 
         public void Tick(float deltaTime)
         {
-            if(_isDirty)
-                _boardDisplay.SetState(_boardStateProvider.BoardState);
+            if (!_isDirty)
+                return;
+            
+            _isDirty = false;
+            _boardDisplay.SetState(_boardStateProvider.BoardState);
         }
 
         private void MarkForRepaint() => 
