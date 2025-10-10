@@ -1,0 +1,23 @@
+{
+    "name": "Features.Gameplay.Composition",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8f3de34dfc264aa9b5bac724f3bca1b9",
+        "GUID:d766001b29ef5d24098e6c0c7e2c77cd",
+        "GUID:8c0f9fedee4c4084847493f6d35387ae",
+        "GUID:8ab1d7dbecab449496efa608909a76b8",
+        "GUID:6aaa81e14a744bada08644c0dc6de7bb",
+        "GUID:efd294b82d50dcd489b49988b3da80d0",
+        "GUID:af3edb98d72f4193849b2d78ae2ca80d",
+        "GUID:7933f53693384adb840db4d777d3e33d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

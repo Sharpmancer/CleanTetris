@@ -1,0 +1,16 @@
+{
+    "name": "Features.MainMenu.Infrastructure",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6525566ef9f54e6b8fb4afdad915a8bf"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

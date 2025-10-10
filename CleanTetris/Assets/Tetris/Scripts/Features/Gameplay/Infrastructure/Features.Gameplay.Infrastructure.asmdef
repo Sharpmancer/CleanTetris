@@ -1,0 +1,19 @@
+{
+    "name": "Features.Gameplay.Infrastructure",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8393330adb974807846771bdde1942b8",
+        "GUID:8c0f9fedee4c4084847493f6d35387ae",
+        "GUID:6aaa81e14a744bada08644c0dc6de7bb",
+        "GUID:efd294b82d50dcd489b49988b3da80d0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

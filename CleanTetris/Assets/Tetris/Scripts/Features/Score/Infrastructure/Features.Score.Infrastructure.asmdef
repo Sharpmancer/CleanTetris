@@ -1,0 +1,19 @@
+{
+    "name": "Features.Score.Infrastructure",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8f3de34dfc264aa9b5bac724f3bca1b9",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:ebbc239855f740b4bb19b5ae3097c300",
+        "GUID:eb71f1189c41490ba8635fa65df7b46a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

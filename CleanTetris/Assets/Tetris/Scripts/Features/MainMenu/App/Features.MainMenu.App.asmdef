@@ -1,0 +1,17 @@
+{
+    "name": "Features.MainMenu.App",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8f3de34dfc264aa9b5bac724f3bca1b9",
+        "GUID:8ab1d7dbecab449496efa608909a76b8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,21 @@
+{
+    "name": "Features.Score.Composition",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8f3de34dfc264aa9b5bac724f3bca1b9",
+        "GUID:d766001b29ef5d24098e6c0c7e2c77cd",
+        "GUID:ebbc239855f740b4bb19b5ae3097c300",
+        "GUID:eb71f1189c41490ba8635fa65df7b46a",
+        "GUID:45896e5b9f7a42619fb452e618af5230",
+        "GUID:6aaa81e14a744bada08644c0dc6de7bb"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
