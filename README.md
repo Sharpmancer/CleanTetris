@@ -23,7 +23,7 @@ This project is not about gameplay complexity — it’s a **code example** show
 
 ---
 
-## 🧩 Layers
+## 🏗️ Layers
 
 ### Domain
 - Defines the **core feature model**, incapsulating its data structures, behaviour and state.
