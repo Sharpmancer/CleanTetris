@@ -8,18 +8,12 @@ namespace Libs.Bootstrap
     {
         private readonly RunnableContext _parent;
         private readonly Dictionary<Type, object> _instances = new();
-        private readonly HashSet<IInitializable> _initializables = new();
-        private readonly HashSet<ITickable> _tickables = new();
-        private readonly HashSet<IDisposable> _disposables = new();
+        private readonly List<IInitializable> _initializables = new();
+        private readonly List<ITickable> _tickables = new();
+        private readonly List<IDisposable> _disposables = new();
 
         internal RunnableContext(RunnableContext parent = null) => 
             _parent = parent;
-
-        internal void RunInstallers(IEnumerable<Installer> installers)
-        {
-            foreach (var installer in installers) 
-                installer.Install(this);
-        }
 
         public T Get<T>() where T : class =>  
             _instances.TryGetValue(typeof(T), out var instance) 
@@ -39,6 +33,12 @@ namespace Libs.Bootstrap
                 _disposables.Add(disposable);
         }
 
+        internal void RunInstallers(IEnumerable<Installer> installers)
+        {
+            foreach (var installer in installers) 
+                installer.Install(this);
+        }
+
         internal void RunInitializables()
         {
             foreach (var initializable in _initializables) 
@@ -51,10 +51,11 @@ namespace Libs.Bootstrap
                 tickable.Tick(timeDelta);
         }
 
+        // Disposes in reverse init order
         internal void RunDisposables()
         {
-            foreach (var disposable in _disposables) 
-                disposable.Dispose();
+            for (var i = _disposables.Count - 1; i >= 0; --i) 
+                _disposables[i].Dispose();
         }
     }
 }

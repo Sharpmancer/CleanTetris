@@ -8,8 +8,6 @@ namespace Features.Input.Infrastructure
 {
     public sealed class UnityInputAdapter : MonoBehaviour, ITickable, IInitializable
     {
-        private readonly ExceptionHandler _exceptionHandler = new();
-        
         private IInboundCommandsPort _listener;
         private IInputCommandsToKeyCodesMapping _keyMapping;
         private (InboundCommands command, KeyCode key)[] _keys;
@@ -30,24 +28,16 @@ namespace Features.Input.Infrastructure
 
         public void Tick(float deltaTime)
         {
-            _exceptionHandler.ThrowIfAnyAndReset();
-            
             _listener.Push(_commandsBuffer);
             _commandsBuffer = InboundCommands.None;
         }
 
         private void Update()
         {
-            _exceptionHandler.RunSafely(UpdateLogic);
-            return;
-
-            void UpdateLogic()
+            foreach (var (command, key) in _keys)
             {
-                foreach (var (command, key) in _keys)
-                {
-                    if(UnityEngine.Input.GetKey(key))
-                        _commandsBuffer |= command;
-                }
+                if(UnityEngine.Input.GetKey(key))
+                    _commandsBuffer |= command;
             }
         }
     }
