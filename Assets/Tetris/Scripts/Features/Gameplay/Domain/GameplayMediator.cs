@@ -44,10 +44,10 @@ namespace Features.Gameplay.Domain
 
         internal void HandleBoardStateChanged() => 
             OnBoardStateChanged?.Invoke();
-        
+
         internal void HandleRowsCleared(UpToFourBytes rows) =>
             OnRowsCleared?.Invoke(rows);
-        
+
         internal void HandleNewShapeSpawned()
         {
             TimeSinceLastTick = 0;

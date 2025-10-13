@@ -57,5 +57,8 @@ namespace Features.Gameplay.Domain
         
         internal void SwapRows(int y1, int y2) => 
             _mask.SwapRows(y1, y2);
+        
+        internal void SetValue(uint[] value) =>
+            _mask.SetValue(value);
     }
 }

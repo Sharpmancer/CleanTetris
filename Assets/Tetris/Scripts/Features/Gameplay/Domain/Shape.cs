@@ -15,13 +15,12 @@ namespace Features.Gameplay.Domain
     /// </summary>
     internal sealed class Shape
     {
-        private ushort _mask;
-        
         // Normalization offsets from the top-left corner
         private int _offsetX;
         private int _offsetY;
         internal int Width {get; private set;}
         internal int Height {get; private set;}
+        internal ushort Mask { get; private set; }
 
         internal static readonly Shape I = new(0x0F00); // 0000 1111 0000 0000
         internal static readonly Shape T = new(0x0E40); // 0000 1110 0100 0000
@@ -43,11 +42,11 @@ namespace Features.Gameplay.Domain
         internal Shape() =>
             SetNewValue(0);
 
-        private Shape(ushort mask) => 
+        internal Shape(ushort mask) => 
             SetNewValue(mask);
 
         internal void WriteTo(Shape target) =>
-            target.SetNewValue(_mask);
+            target.SetNewValue(Mask);
 
         internal IEnumerable<(int x, int y)> Cells()
         {
@@ -74,11 +73,11 @@ namespace Features.Gameplay.Domain
         }
 
         private bool ContainsPoint(int x, int y) => 
-            ((_mask >> 15 - (y * 4 + x)) & 1) != 0;
+            ((Mask >> 15 - (y * 4 + x)) & 1) != 0;
 
         private void SetNewValue(ushort mask)
         {
-            _mask = mask;
+            Mask = mask;
             CalculateOffset();
             return;
 

@@ -93,6 +93,9 @@ namespace Libs.Bitmasks
                 mask._rows[i] = _rows[i];
         }
 
+        public void SetValue(uint[] value) => 
+            Array.Copy(value, 0, _rows, 0, Rows);
+
         public IEnumerable<(int x, int y)> AllSetCells()
         {
             for (var y = 0; y < Rows; y++)
@@ -107,7 +110,10 @@ namespace Libs.Bitmasks
                 }
             }
         }
-        
+
+        public uint[] CloneUnderlyingValue() => 
+            _rows.Clone() as uint[];
+
         private void ValidateCoords(int x, int y)
         {
             if (OutOfBounds(x, y))

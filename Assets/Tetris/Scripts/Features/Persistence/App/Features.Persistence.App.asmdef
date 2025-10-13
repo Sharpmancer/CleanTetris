@@ -1,0 +1,19 @@
+{
+    "name": "Features.Persistence.App",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0cec5249c76a404da0ea23a2f4097908",
+        "GUID:6aaa81e14a744bada08644c0dc6de7bb",
+        "GUID:ebbc239855f740b4bb19b5ae3097c300",
+        "GUID:8f3de34dfc264aa9b5bac724f3bca1b9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

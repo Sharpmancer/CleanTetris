@@ -12,5 +12,6 @@ namespace Libs.Bitmasks
         bool OutOfBounds(int x, int y);
         void WriteTo(BitMask2D mask);
         IEnumerable<(int x, int y)> AllSetCells();
+        uint[] CloneUnderlyingValue();
     }
 }

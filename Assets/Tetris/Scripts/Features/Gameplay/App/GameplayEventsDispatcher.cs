@@ -8,17 +8,27 @@ namespace Features.Gameplay.App
     {
         private readonly IGameplayEvents _domainEvents;
         public event Action<UpToFourBytes> OnRowsCleared;
+        public event Action OnBoardStateChanged;
 
         public GameplayEventsDispatcher(IGameplayEvents domainEvents) => 
             _domainEvents = domainEvents;
 
-        public void Initialize() =>
+        public void Initialize()
+        {
             _domainEvents.OnRowsCleared += HandleRowsCleared;
-        
-        public void Dispose() => 
+            _domainEvents.OnBoardStateChanged += HandleBoardStateChanged;
+        }
+
+        public void Dispose()
+        {
             _domainEvents.OnRowsCleared -= HandleRowsCleared;
+            _domainEvents.OnBoardStateChanged -= HandleBoardStateChanged;
+        }
 
         private void HandleRowsCleared(UpToFourBytes obj) => 
             OnRowsCleared?.Invoke(obj);
+
+        private void HandleBoardStateChanged() => 
+            OnBoardStateChanged?.Invoke();
     }
 }
