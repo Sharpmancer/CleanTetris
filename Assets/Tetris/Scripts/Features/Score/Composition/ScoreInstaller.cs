@@ -3,6 +3,7 @@ using Features.Score.App;
 using Features.Score.Domain;
 using Features.Score.Infrastructure;
 using Libs.Bootstrap;
+using Libs.Core;
 using UnityEngine;
 
 namespace Features.Score.Composition
@@ -21,6 +22,9 @@ namespace Features.Score.Composition
             
             var scoreDisplayPresenter = new ScoreDisplayPresenter(model, _scoreDisplay);
             context.RegisterRunnable(scoreDisplayPresenter);
+            
+            var snapshotOperator = new ScoreSnapshotOperator(mementoProvider: model, mementoConsumer: model);
+            context.RegisterContract<ISnapshotable<ScoreSnapshot>>(snapshotOperator);
         }
     }
 }

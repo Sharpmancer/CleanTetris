@@ -1,5 +1,3 @@
-using System;
-using Libs.Core;
 using UnityEngine;
 
 namespace Libs.Bootstrap
@@ -19,8 +17,11 @@ namespace Libs.Bootstrap
 
         protected abstract ContextRunner GetParentContextRunner();
 
-        private void Start() => 
+        private void Start()
+        {
+            _context.RunPreInitializables();
             _context.RunInitializables();
+        }
 
         private void Update() => 
             _context.RunTickables(Time.deltaTime);

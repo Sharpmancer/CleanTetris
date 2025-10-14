@@ -1,5 +1,6 @@
 ﻿using System;
 using Features.Gameplay.App;
+using Features.Score.App;
 using Libs.Core;
 using Libs.Persistence;
 
@@ -7,16 +8,21 @@ namespace Features.Persistence.App
 {
     public class SaveOnGameStateChangedUseCase : IInitializable, IDisposable
     {
-        private const string SESSION_STATE_KEY = "session_state";
         private readonly IGameplayEventsDispatcher _gameEvents;
         private readonly ISnapshotable<GameplaySnapshot> _gameplaySnapshot;
+        private readonly ISnapshotable<ScoreSnapshot> _scoreSnapshot;
         private readonly ISaver _saver;
 
-        public SaveOnGameStateChangedUseCase(IGameplayEventsDispatcher gameEvents, ISaver saver, ISnapshotable<GameplaySnapshot> gameplaySnapshot)
+        public SaveOnGameStateChangedUseCase(
+            IGameplayEventsDispatcher gameEvents, 
+            ISaver saver, 
+            ISnapshotable<GameplaySnapshot> gameplaySnapshot,
+            ISnapshotable<ScoreSnapshot> scoreSnapshot)
         {
             _gameEvents = gameEvents;
             _saver = saver;
             _gameplaySnapshot = gameplaySnapshot;
+            _scoreSnapshot = scoreSnapshot;
         }
 
         public void Initialize() => 
@@ -25,10 +31,7 @@ namespace Features.Persistence.App
         public void Dispose() => 
             _gameEvents.OnBoardStateChanged -= SaveGameState;
 
-        private void SaveGameState()
-        {
-            
-            _saver.Save(SESSION_STATE_KEY, _gameplaySnapshot.GetSnapshot());
-        }
+        private void SaveGameState() => 
+            _saver.Save(PersistenceConstants.SAVE_KEY, new SaveDataAssembly(_gameplaySnapshot.GetSnapshot(), _scoreSnapshot.GetSnapshot()));
     }
 }

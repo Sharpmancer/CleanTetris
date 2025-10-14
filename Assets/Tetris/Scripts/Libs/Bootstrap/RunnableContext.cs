@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Libs.Core;
 
 namespace Libs.Bootstrap
@@ -8,6 +9,7 @@ namespace Libs.Bootstrap
     {
         private readonly RunnableContext _parent;
         private readonly Dictionary<Type, object> _instances = new();
+        private readonly List<IPreInitializable> _preInitializables = new();
         private readonly List<IInitializable> _initializables = new();
         private readonly List<ITickable> _tickables = new();
         private readonly List<IDisposable> _disposables = new();
@@ -31,12 +33,20 @@ namespace Libs.Bootstrap
                 _tickables.Add(tickable);
             if(instance is IDisposable disposable)
                 _disposables.Add(disposable);
+            if(instance is IPreInitializable preInitializable)
+                _preInitializables.Add(preInitializable);
         }
 
         internal void RunInstallers(IEnumerable<Installer> installers)
         {
             foreach (var installer in installers) 
                 installer.Install(this);
+        }
+
+        internal void RunPreInitializables()
+        {
+            foreach (var item in _preInitializables.OrderBy(n => n.Order)) 
+                item.PreInitialize();
         }
 
         internal void RunInitializables()

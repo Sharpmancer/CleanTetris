@@ -1,25 +1,27 @@
-﻿namespace Features.Gameplay.Domain
+﻿using Libs.Core;
+
+namespace Features.Gameplay.Domain
 {
-    public class GameplayMementoOperator : IGameplayMementoProvider, IGameplayMementoConsumer
+    public class GameplayMementoOperator : IMementoProvider<GameplayMemento>, IMementoConsumer<GameplayMemento>
     {
         private readonly GameplayMediator _gameplayMediator;
 
         public GameplayMementoOperator(GameplayMediator gameplayMediator) => 
             _gameplayMediator = gameplayMediator;
 
-        public Memento GetMemento() =>
+        public GameplayMemento GetMemento() =>
             new(_gameplayMediator.BoardState.CloneUnderlyingValue(), 
                 _gameplayMediator.CurrentShape?.Mask ?? 0,
                 (byte)_gameplayMediator.ShapePosition.Column,
                 (byte)_gameplayMediator.ShapePosition.Row);
 
-        public void SetMemento(Memento memento)
+        public void SetMemento(GameplayMemento gameplayMemento)
         {
-            _gameplayMediator.Board.SetValue(memento.BoardState);
-            if(memento.CurrentShape == 0)
+            _gameplayMediator.Board.SetValue(gameplayMemento.BoardState);
+            if(gameplayMemento.CurrentShape == 0)
                 return;
-            _gameplayMediator.CurrentShape = new Shape(memento.CurrentShape);
-            _gameplayMediator.ShapePosition = new GridCoordinates(column: memento.ShapePositionX, row: memento.ShapePositionY);
+            _gameplayMediator.CurrentShape = new Shape(gameplayMemento.CurrentShape);
+            _gameplayMediator.ShapePosition = new GridCoordinates(column: gameplayMemento.ShapePositionX, row: gameplayMemento.ShapePositionY);
             _gameplayMediator.HandleBoardStateChanged();
         }
     }

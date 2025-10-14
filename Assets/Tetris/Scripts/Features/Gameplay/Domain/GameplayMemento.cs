@@ -1,13 +1,15 @@
-﻿namespace Features.Gameplay.Domain
+﻿using Libs.Core;
+
+namespace Features.Gameplay.Domain
 {
-    public readonly struct Memento
+    public readonly struct GameplayMemento : IMemento
     {
         public readonly uint[] BoardState;
         public readonly ushort CurrentShape;
         public readonly byte ShapePositionX;
         public readonly byte ShapePositionY;
 
-        public Memento(uint[] boardState, ushort currentShape, byte shapePositionX, byte shapePositionY)
+        public GameplayMemento(uint[] boardState, ushort currentShape, byte shapePositionX, byte shapePositionY)
         {
             BoardState = boardState;
             CurrentShape = currentShape;

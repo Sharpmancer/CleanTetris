@@ -3,12 +3,12 @@ using Libs.Core;
 
 namespace Features.Gameplay.App
 {
-    public class GameplaySnapshotController : ISnapshotable<GameplaySnapshot>
+    public class GameplaySnapshotOperator : ISnapshotable<GameplaySnapshot>
     {
-        private readonly IGameplayMementoProvider _mementoProvider;
-        private readonly IGameplayMementoConsumer _mementoConsumer;
+        private readonly IMementoProvider<GameplayMemento> _mementoProvider;
+        private readonly IMementoConsumer<GameplayMemento> _mementoConsumer;
 
-        public GameplaySnapshotController(IGameplayMementoProvider mementoProvider, IGameplayMementoConsumer mementoConsumer)
+        public GameplaySnapshotOperator(IMementoProvider<GameplayMemento> mementoProvider, IMementoConsumer<GameplayMemento> mementoConsumer)
         {
             _mementoProvider = mementoProvider;
             _mementoConsumer = mementoConsumer;

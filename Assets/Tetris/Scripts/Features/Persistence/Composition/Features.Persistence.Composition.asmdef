@@ -1,3 +1,21 @@
-﻿{
-  "name": "Features.Persistence.Composition"
+{
+    "name": "Features.Persistence.Composition",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8f3de34dfc264aa9b5bac724f3bca1b9",
+        "GUID:d766001b29ef5d24098e6c0c7e2c77cd",
+        "GUID:0cec5249c76a404da0ea23a2f4097908",
+        "GUID:075cca531109470dae9ab92f57df5c5a",
+        "GUID:6aaa81e14a744bada08644c0dc6de7bb",
+        "GUID:ebbc239855f740b4bb19b5ae3097c300"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -1,8 +1,9 @@
 using System;
+using Libs.Core;
 
 namespace Features.Score.Domain
 {
-    public sealed class ScoreTracker : ILinesClearedHandler, IScoreEventsDispatcher
+    public sealed class ScoreTracker : ILinesClearedHandler, IScoreEventsDispatcher, IMementoProvider<ScoreMemento>, IMementoConsumer<ScoreMemento>
     {
         private readonly IScoreConfig _config;
         public int Points { get; private set; }
@@ -27,6 +28,15 @@ namespace Features.Score.Domain
 
             Points += points;
             OnPointsAdded?.Invoke(points);
+            OnScoreChanged?.Invoke();
+        }
+
+        public ScoreMemento GetMemento() => 
+            new(Points);
+
+        public void SetMemento(ScoreMemento Memento)
+        {
+            Points = Memento.Points;
             OnScoreChanged?.Invoke();
         }
     }

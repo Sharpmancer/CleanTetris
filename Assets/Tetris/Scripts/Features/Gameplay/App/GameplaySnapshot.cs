@@ -1,7 +1,9 @@
-﻿using Features.Gameplay.Domain;
+﻿using System;
+using Features.Gameplay.Domain;
 
 namespace Features.Gameplay.App
 {
+    [Serializable]
     public record GameplaySnapshot
     {
         public uint[] BoardState;
@@ -9,16 +11,16 @@ namespace Features.Gameplay.App
         public byte ShapePositionX;
         public byte ShapePositionY;
 
-        internal Memento ToMemento() => 
+        internal GameplayMemento ToMemento() => 
             new(BoardState, CurrentShape, ShapePositionX, ShapePositionY);
 
-        internal static GameplaySnapshot FromMemento(Memento memento) =>
+        internal static GameplaySnapshot FromMemento(GameplayMemento gameplayMemento) =>
             new()
             {
-                BoardState = memento.BoardState,
-                CurrentShape = memento.CurrentShape,
-                ShapePositionX = memento.ShapePositionX,
-                ShapePositionY = memento.ShapePositionY,
+                BoardState = gameplayMemento.BoardState,
+                CurrentShape = gameplayMemento.CurrentShape,
+                ShapePositionX = gameplayMemento.ShapePositionX,
+                ShapePositionY = gameplayMemento.ShapePositionY,
             };
     }
 }

@@ -3,6 +3,7 @@ using Features.Gameplay.Domain;
 using Features.Gameplay.Infrastructure;
 using Features.Input.App;
 using Libs.Bootstrap;
+using Libs.Core;
 using Libs.OneBitDisplay;
 using Libs.SceneManagement;
 using UnityEngine;
@@ -23,6 +24,13 @@ namespace Features.Gameplay.Composition
             context.RegisterContract<IGameplayCommandsPort>(model);
             context.RegisterRunnable(model);
 
+            var mementoOperator = new GameplayMementoOperator(model);
+            context.RegisterContract<IMementoProvider<GameplayMemento>>(mementoOperator);
+            context.RegisterContract<IMementoConsumer<GameplayMemento>>(mementoOperator);
+            
+            var snapshotOperator = new GameplaySnapshotOperator(mementoProvider: mementoOperator, mementoConsumer: mementoOperator);
+            context.RegisterContract<ISnapshotable<GameplaySnapshot>>(snapshotOperator);
+
             var displayAdapter = new OneBitDisplayToIBoardDisplayAdapter(_nativeDisplay);
             var presenter = new BoardPresenter(context.Get<IGameplayEvents>(), context.Get<IBoardStateProvider>(), displayAdapter);
             context.RegisterRunnable(presenter);
@@ -35,7 +43,7 @@ namespace Features.Gameplay.Composition
 
             var handleGameOverUseCase = new HandleGameOverUseCase(context.Get<IGameplayEvents>(), _gameOverDialogue, context.Get<ISceneManager>());
             context.RegisterRunnable(handleGameOverUseCase);
-
+            
             var eventsDispatcher = new GameplayEventsDispatcher(model);
             context.RegisterContract<IGameplayEventsDispatcher>(eventsDispatcher);
             context.RegisterRunnable(eventsDispatcher);
