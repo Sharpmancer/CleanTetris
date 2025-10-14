@@ -5,24 +5,17 @@ using Libs.Persistence;
 
 namespace Features.Persistence.App
 {
-    public class DeleteSessionStateSaveFileOnGameOverUseCase : IInitializable, IDisposable
+    public class DeleteSessionStateSaveFileOnGameOverUseCase : DeleteSaveFileUseCase, IInitializable, IDisposable
     {
-        private readonly ISaveDeleter _saveDeleter;
         private readonly IGameplayEventsDispatcher _gameplayEventsDispatcher;
 
-        public DeleteSessionStateSaveFileOnGameOverUseCase(IGameplayEventsDispatcher gameplayEventsDispatcher, ISaveDeleter saveDeleter)
-        {
+        public DeleteSessionStateSaveFileOnGameOverUseCase(IGameplayEventsDispatcher gameplayEventsDispatcher, ISaveDeleter saveDeleter) : base(saveDeleter) => 
             _gameplayEventsDispatcher = gameplayEventsDispatcher;
-            _saveDeleter = saveDeleter;
-        }
 
         public void Initialize() => 
-            _gameplayEventsDispatcher.OnGameOver += RemoveSaveFile;
+            _gameplayEventsDispatcher.OnGameOver += DeleteSaveFile;
 
         public void Dispose() => 
-            _gameplayEventsDispatcher.OnGameOver -= RemoveSaveFile;
-
-        private void RemoveSaveFile() => 
-            _saveDeleter.Delete(PersistenceConstants.SAVE_KEY);
+            _gameplayEventsDispatcher.OnGameOver -= DeleteSaveFile;
     }
 }

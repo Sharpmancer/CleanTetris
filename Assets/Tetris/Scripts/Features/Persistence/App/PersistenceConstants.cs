@@ -2,6 +2,6 @@
 {
     public static class PersistenceConstants
     {
-        public const string SAVE_KEY = "session_state";   
+        public const string SESSION_STATE_SAVE_KEY = "session_state";   
     }
 }

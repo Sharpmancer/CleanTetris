@@ -10,7 +10,13 @@ namespace Features.MainMenu.Composition
     {
         [SerializeField] private MainMenuDialogue _menuDialogue;
         
-        public override void Install(IInstallableContext context) => 
-            context.RegisterRunnable(new HandleMainMenuCommandsUseCase(_menuDialogue, context.Get<ISceneManager>()));
+        public override void Install(IInstallableContext context)
+        {
+            var menuHandler = new HandleMainMenuUseCase(_menuDialogue, context.Get<ISceneManager>());
+            
+            context.RegisterContract<IMainMenuEventsDispatcher>(menuHandler);
+            context.RegisterContract<IContinueGameIsAvailableHydratable>(menuHandler);
+            context.RegisterRunnable(menuHandler);
+        }
     }
 }

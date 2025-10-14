@@ -4,6 +4,8 @@ namespace Features.MainMenu.App
 {
     public interface IMainMenuDialogue
     {
-        void Show(Action onExit, Action onNewGame);
+        // TODO: create dialogue and button abstractions, create a UI lib
+        void Show(Action onExit, Action onNewGame, Action onContinue);
+        void SetContinueButtonInteractable(bool value);
     }
 }

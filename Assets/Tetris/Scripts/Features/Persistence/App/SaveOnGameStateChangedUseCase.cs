@@ -32,6 +32,6 @@ namespace Features.Persistence.App
             _gameEvents.OnBoardStateChanged -= SaveGameState;
 
         private void SaveGameState() => 
-            _saver.Save(PersistenceConstants.SAVE_KEY, new SaveDataAssembly(_gameplaySnapshot.GetSnapshot(), _scoreSnapshot.GetSnapshot()));
+            _saver.Save(PersistenceConstants.SESSION_STATE_SAVE_KEY, new SessionStateDataAssembly(_gameplaySnapshot.GetSnapshot(), _scoreSnapshot.GetSnapshot()));
     }
 }

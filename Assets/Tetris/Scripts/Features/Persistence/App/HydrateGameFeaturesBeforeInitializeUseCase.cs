@@ -23,9 +23,9 @@ namespace Features.Persistence.App
 
         public void PreInitialize()
         {
-            if(!_loader.TryLoad(PersistenceConstants.SAVE_KEY, typeof(SaveDataAssembly), out var sessionState))
+            if(!_loader.TryLoad(PersistenceConstants.SESSION_STATE_SAVE_KEY, typeof(SessionStateDataAssembly), out var sessionState))
                 return;
-            var data = (SaveDataAssembly)sessionState;
+            var data = (SessionStateDataAssembly)sessionState;
             _gameplaySnapshot.SetSnapshot(data.GameplaySnapshot);
             _scoreSnapshot.SetSnapshot(data.ScoreSnapshot);
         }
