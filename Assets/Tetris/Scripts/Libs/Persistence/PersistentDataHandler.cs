@@ -2,26 +2,26 @@
 
 namespace Libs.Persistence
 {
-    public sealed class DataSaverAndLoader : ISaver, ILoader
+    public sealed class PersistentDataHandler : ISaver, ILoader, ISaveDeleter
     {
         private readonly ISerializationStrategy _serializer;
         private readonly IEncryptionStrategy _encryptor;
         private readonly IMetadataStrategy _metadata;
         private readonly IMigrationStrategy _migrator;
-        private readonly IWritingStrategy _writer;
+        private readonly IFileOperationsStrategy _writer;
 
-        public DataSaverAndLoader(
+        public PersistentDataHandler(
             ISerializationStrategy serializer = null,
             IEncryptionStrategy encryptor = null,
             IMetadataStrategy metadata = null,
             IMigrationStrategy migrator = null,
-            IWritingStrategy writer = null)
+            IFileOperationsStrategy writer = null)
         {
             _serializer = serializer ?? new JsonUtilitySerializer();
             _encryptor = encryptor ?? new NoEncryption();
             _metadata = metadata ?? new UnixTimeMetadata();
             _migrator = migrator ?? new NoMigration();
-            _writer = writer ?? new PersistentDataPathFileWriter();
+            _writer = writer ?? new PersistentDataPathFileOperationsStrategy();
         }
 
         public void Save(string key, object data)
@@ -63,5 +63,8 @@ namespace Libs.Persistence
             
             return data != null;
         }
+
+        public void Delete(string key) => 
+            _writer.Delete(key);
     }
 }

@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Libs.Persistence
 {
-    public sealed class PersistentDataPathFileWriter : IWritingStrategy
+    public sealed class PersistentDataPathFileOperationsStrategy : IFileOperationsStrategy
     {
         private readonly string _dir;
 
-        public PersistentDataPathFileWriter(string subDirectory = "Saves")
+        public PersistentDataPathFileOperationsStrategy(string subDirectory = "Saves")
         {
             _dir = string.IsNullOrWhiteSpace(subDirectory)
                 ? Application.persistentDataPath
@@ -32,6 +32,9 @@ namespace Libs.Persistence
             
             return !string.IsNullOrEmpty(data);
         }
+
+        public void Delete(string key) => 
+            File.Delete(PathFor(key));
 
         private string PathFor(string key)
         {
