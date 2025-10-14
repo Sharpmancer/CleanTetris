@@ -51,6 +51,7 @@ This project is not about gameplay complexity — it’s a **code example** show
 | [Score](Assets/Tetris/Scripts/Features/Score/README.md)                             | Independent scoring system reacting to gameplay events. |
 | [Input](Assets/Tetris/Scripts/Features/Input/README.md)                             | Converts button presses into game commands with repeat timing and anti-mash logic. |
 | [MainMenu](Assets/Tetris/Scripts/Features/MainMenu/README.md)                       | Entry UI and scene-flow hub. |
+| [Persistence](Assets/Tetris/Scripts/Features/Persistence/README.md) | Handles saving, loading, hydration, and cleanup of session data across features. |
 
 ## 🧰 Shared Libraries
 
@@ -61,6 +62,7 @@ This project is not about gameplay complexity — it’s a **code example** show
 | [Bootstrap](Assets/Tetris/Scripts/Libs/Bootstrap/README.md) | Dependency Injection setup and installer base types. |
 | [SceneManagement](Assets/Tetris/Scripts/Libs/SceneManagement/README.md) | Scene transition helpers. |
 | [OneBitDisplay](Assets/Tetris/Scripts/Libs/OneBitDisplay/README.md) | Minimalistic grid-based pixel display renderer. |
+| [Persistence](Assets/Tetris/Scripts/Libs/Persistence/README.md) | Modular, strategy-based save/load system supporting serialization, encryption, and atomic file operations. |
 
 ---
 
