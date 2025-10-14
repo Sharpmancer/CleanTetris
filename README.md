@@ -63,6 +63,7 @@ This project is not about gameplay complexity — it’s a **code example** show
 | [SceneManagement](Assets/Tetris/Scripts/Libs/SceneManagement/README.md) | Scene transition helpers. |
 | [OneBitDisplay](Assets/Tetris/Scripts/Libs/OneBitDisplay/README.md) | Minimalistic grid-based pixel display renderer. |
 | [Persistence](Assets/Tetris/Scripts/Libs/Persistence/README.md) | Modular, strategy-based save/load system supporting serialization, encryption, and atomic file operations. |
+| [UnityUtils](Assets/Tetris/Scripts/Libs/UnityUtils/README.md) | Making life easier. |
 
 ---
 
