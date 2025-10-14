@@ -22,6 +22,8 @@ namespace Features.Gameplay.App
         {
             _boardDisplay.Initialize(_boardStateProvider.BoardState);
             _events.OnBoardStateChanged += MarkForRepaint;
+            // eliminates race condition with gameplay initialization
+            MarkForRepaint();
         }
 
         public void Dispose() => 
@@ -32,8 +34,8 @@ namespace Features.Gameplay.App
             if (!_isDirty)
                 return;
             
-            _isDirty = false;
             _boardDisplay.SetState(_boardStateProvider.BoardState);
+            _isDirty = false;
         }
 
         private void MarkForRepaint() => 
