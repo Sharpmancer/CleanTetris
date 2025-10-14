@@ -7,5 +7,6 @@ namespace Features.Gameplay.App
     {
         event Action<UpToFourBytes> OnRowsCleared;
         event Action OnBoardStateChanged;
+        event Action OnGameOver;
     }
 }
