@@ -61,6 +61,7 @@ This project is not about gameplay complexity — it’s a **code example** show
 | [Bootstrap](Assets/Tetris/Scripts/Libs/Bootstrap/README.md) | Dependency Injection setup and installer base types. |
 | [SceneManagement](Assets/Tetris/Scripts/Libs/SceneManagement/README.md) | Scene transition helpers. |
 | [OneBitDisplay](Assets/Tetris/Scripts/Libs/OneBitDisplay/README.md) | Minimalistic grid-based pixel display renderer. |
+| [UnityUtils](Assets/Tetris/Scripts/Libs/UnityUtils/README.md) | Making life easier. |
 
 ---
 
