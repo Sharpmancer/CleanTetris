@@ -20,7 +20,7 @@ namespace Features.Gameplay.Composition
         
         public override void Install(IInstallableContext context)
         {
-            var model = new GameplayMediator(_boardSize.x, _boardSize.y);
+            var model = new GameplayMediator(_boardSize.x, _boardSize.y, new ClassicNesLookupGravityCalculationStrategy(), new OneLevelPerTenRowsClearedCalculationStrategy());
             context.RegisterContract<IGameplayEventsDispatcher>(model);
             context.RegisterContract<IBoardStateProvider>(model);
             context.RegisterContract<IGameplayCommandsPort>(model);
