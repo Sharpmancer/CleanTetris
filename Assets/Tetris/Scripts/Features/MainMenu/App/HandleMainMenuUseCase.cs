@@ -1,5 +1,5 @@
 using System;
-using Libs.Core;
+using Libs.Core.Lifecycle;
 using Libs.SceneManagement;
 using UnityEngine;
 

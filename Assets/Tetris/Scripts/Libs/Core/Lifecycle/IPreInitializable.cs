@@ -1,8 +1,8 @@
-﻿namespace Libs.Core
+﻿namespace Libs.Core.Lifecycle
 {
     public interface IPreInitializable
     {
-        int Order { get; }
+        int PreInitOrder { get; }
         void PreInitialize();
     }
 }

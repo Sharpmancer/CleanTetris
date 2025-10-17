@@ -1,4 +1,4 @@
-using Libs.Core;
+using Libs.Core.Primitives;
 
 namespace Features.Gameplay.Domain.States
 {

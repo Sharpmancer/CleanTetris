@@ -1,6 +1,6 @@
 ﻿using Features.MainMenu.App;
 using Features.Shared;
-using Libs.Core;
+using Libs.Core.Lifecycle;
 using Libs.Persistence;
 
 namespace Features.Persistence.App

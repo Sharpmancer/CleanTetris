@@ -1,5 +1,5 @@
 using System;
-using Libs.Core;
+using Libs.Core.Primitives;
 
 namespace Features.Gameplay.App
 {

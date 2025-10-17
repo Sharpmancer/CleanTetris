@@ -1,7 +1,7 @@
 ﻿using Features.Gameplay.App;
 using Features.Score.App;
 using Features.Shared;
-using Libs.Core;
+using Libs.Core.Lifecycle;
 using Libs.Persistence;
 
 namespace Features.Persistence.App

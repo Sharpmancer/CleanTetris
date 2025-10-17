@@ -1,5 +1,5 @@
 using System;
-using Libs.Core;
+using Libs.Core.Patterns.Memento;
 
 namespace Features.Score.Domain
 {

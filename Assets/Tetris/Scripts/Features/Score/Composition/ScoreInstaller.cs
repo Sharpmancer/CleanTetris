@@ -3,7 +3,7 @@ using Features.Score.App;
 using Features.Score.Domain;
 using Features.Score.Infrastructure;
 using Libs.Bootstrap;
-using Libs.Core;
+using Libs.Core.Patterns.Snapshot;
 using UnityEngine;
 
 namespace Features.Score.Composition

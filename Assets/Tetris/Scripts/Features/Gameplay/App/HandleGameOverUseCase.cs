@@ -1,6 +1,6 @@
 using System;
 using Features.Gameplay.Domain;
-using Libs.Core;
+using Libs.Core.Lifecycle;
 using Libs.SceneManagement;
 
 namespace Features.Gameplay.App

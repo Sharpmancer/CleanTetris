@@ -1,4 +1,4 @@
-﻿using Libs.Core;
+﻿using Libs.Core.Patterns.Memento;
 
 namespace Features.Gameplay.Domain
 {

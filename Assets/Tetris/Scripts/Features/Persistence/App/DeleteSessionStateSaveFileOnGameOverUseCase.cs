@@ -1,6 +1,6 @@
 ﻿using System;
 using Features.Gameplay.App;
-using Libs.Core;
+using Libs.Core.Lifecycle;
 using Libs.Persistence;
 
 namespace Features.Persistence.App

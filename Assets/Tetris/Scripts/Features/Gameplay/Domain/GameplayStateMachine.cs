@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using Features.Gameplay.Domain.States;
-using Libs.Core;
+using Libs.Core.Lifecycle;
 
 namespace Features.Gameplay.Domain
 {

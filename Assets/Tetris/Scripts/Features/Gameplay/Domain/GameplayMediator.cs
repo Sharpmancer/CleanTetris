@@ -1,7 +1,8 @@
 using System;
 using Features.Gameplay.Domain.States;
 using Libs.Bitmasks;
-using Libs.Core;
+using Libs.Core.Lifecycle;
+using Libs.Core.Primitives;
 
 namespace Features.Gameplay.Domain
 {

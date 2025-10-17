@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using Features.Input.App;
-using Libs.Core;
+using Libs.Core.Lifecycle;
 using UnityEngine;
 
 namespace Features.Input.Infrastructure

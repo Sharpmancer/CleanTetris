@@ -1,6 +1,6 @@
 using System;
 
-namespace Libs.Core
+namespace Libs.Core.Primitives
 {
     /// <summary>
     /// Compact container for up to 4 byte-sized values (e.g., a few indices 0–255).

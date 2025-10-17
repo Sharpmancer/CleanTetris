@@ -1,6 +1,6 @@
 using System;
 using Features.Score.Domain;
-using Libs.Core;
+using Libs.Core.Lifecycle;
 
 namespace Features.Score.App
 {

@@ -1,7 +1,8 @@
 using System;
 using Features.Gameplay.App;
 using Features.Score.Domain;
-using Libs.Core;
+using Libs.Core.Lifecycle;
+using Libs.Core.Primitives;
 
 namespace Features.Score.App
 {

@@ -2,7 +2,7 @@
 using Features.Persistence.App;
 using Features.Score.App;
 using Libs.Bootstrap;
-using Libs.Core;
+using Libs.Core.Patterns.Snapshot;
 using Libs.Persistence;
 
 namespace Features.Persistence.Composition

@@ -1,4 +1,4 @@
-﻿namespace Libs.Core
+﻿namespace Libs.Core.Patterns.Memento
 {
     public interface IMementoConsumer<in T> where T : IMemento
     {
