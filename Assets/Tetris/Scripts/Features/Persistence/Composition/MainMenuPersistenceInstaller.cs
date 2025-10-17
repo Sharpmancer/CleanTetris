@@ -9,13 +9,17 @@ namespace Features.Persistence.Composition
     {
         public override void Install(IInstallableContext context)
         {
+            ISaveDataAssemblyTypeProvider saveDataAssemblyStrategyAsOnlyTypeProvider =
+                new ManualSaveDataAssembleStrategy(gameplaySnapshotable: null, scoreSnapshotable: null);
+            
             var deleteSaveOnNewGameUseCase = new DeleteSessionStateSaveFileOnNewGameUseCase(
                 context.Get<ISaveDeleter>(), 
                 context.Get<IMainMenuEventsDispatcher>());
 
             var hydrateMainMenuUseCase = new HydrateMainMenuBeforeInitializationUseCase(
+                context.Get<ILoader>(), 
                 context.Get<IContinueGameIsAvailableHydratable>(),
-                context.Get<ILoader>());
+                saveDataTypeProvider: saveDataAssemblyStrategyAsOnlyTypeProvider);
             
             context.RegisterRunnable(deleteSaveOnNewGameUseCase);
             context.RegisterRunnable(hydrateMainMenuUseCase);

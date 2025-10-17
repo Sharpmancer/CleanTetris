@@ -1,6 +1,4 @@
-﻿using Features.Gameplay.App;
-using Features.Score.App;
-using Features.Shared;
+﻿using Features.Shared;
 using Libs.Core.Lifecycle;
 using Libs.Persistence;
 
@@ -9,25 +7,21 @@ namespace Features.Persistence.App
     public class HydrateGameFeaturesBeforeInitializeUseCase : IPreInitializable
     {
         private readonly ILoader _loader;
-        private readonly ISnapshotable<GameplaySnapshot> _gameplaySnapshot;
-        private readonly ISnapshotable<ScoreSnapshot> _scoreSnapshot;
+        private readonly ISaveDataAssembleStrategy _saveDataAssembleStrategy;
 
-        public int Order => PreInitializationOrder.HYDRATE_GAMEPLAY_FEATURES;
+        public int PreInitOrder => PreInitializationOrder.HYDRATE_GAMEPLAY_FEATURES;
 
-        public HydrateGameFeaturesBeforeInitializeUseCase(ILoader loader, ISnapshotable<GameplaySnapshot> gameplaySnapshot, ISnapshotable<ScoreSnapshot> scoreSnapshot)
+        public HydrateGameFeaturesBeforeInitializeUseCase(ILoader loader, ISaveDataAssembleStrategy saveDataAssembleStrategy)
         {
             _loader = loader;
-            _gameplaySnapshot = gameplaySnapshot;
-            _scoreSnapshot = scoreSnapshot;
+            _saveDataAssembleStrategy = saveDataAssembleStrategy;
         }
 
         public void PreInitialize()
         {
-            if(!_loader.TryLoad(PersistenceConstants.SESSION_STATE_SAVE_KEY, typeof(SessionStateDataAssembly), out var sessionState))
+            if(!_loader.TryLoad(PersistenceConstants.SESSION_STATE_SAVE_KEY, _saveDataAssembleStrategy.DataAssemblyType, out var sessionState))
                 return;
-            var data = (SessionStateDataAssembly)sessionState;
-            _gameplaySnapshot.SetSnapshot(data.GameplaySnapshot);
-            _scoreSnapshot.SetSnapshot(data.ScoreSnapshot);
+            _saveDataAssembleStrategy.DisassembleSaveData(sessionState);
         }
     }
 }

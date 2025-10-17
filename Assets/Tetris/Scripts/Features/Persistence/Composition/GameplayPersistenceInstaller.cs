@@ -11,16 +11,18 @@ namespace Features.Persistence.Composition
     {
         public override void Install(IInstallableContext context)
         {
-            var saveUseCase = new SaveOnGameStateChangedUseCase(
-                context.Get<IGameplayEventsDispatcher>(), 
-                context.Get<ISaver>(), 
+            var saveDataAssembleStrategy = new ManualSaveDataAssembleStrategy(
                 context.Get<ISnapshotable<GameplaySnapshot>>(), 
                 context.Get<ISnapshotable<ScoreSnapshot>>());
+            
+            var saveUseCase = new SaveOnGameBoardStateChangedUseCase(
+                context.Get<IGameplayEventsDispatcher>(), 
+                context.Get<ISaver>(), 
+                saveDataAssembleStrategy);
 
             var loadUseCase = new HydrateGameFeaturesBeforeInitializeUseCase(
                 context.Get<ILoader>(),
-                context.Get<ISnapshotable<GameplaySnapshot>>(),
-                context.Get<ISnapshotable<ScoreSnapshot>>());
+                saveDataAssembleStrategy);
             
             var deleteUseCase = new DeleteSessionStateSaveFileOnGameOverUseCase(
                 context.Get<IGameplayEventsDispatcher>(), 

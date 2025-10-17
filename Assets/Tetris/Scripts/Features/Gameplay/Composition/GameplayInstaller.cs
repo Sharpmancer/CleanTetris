@@ -30,8 +30,8 @@ namespace Features.Gameplay.Composition
             context.RegisterContract<IMementoProvider<GameplayMemento>>(mementoOperator);
             context.RegisterContract<IMementoConsumer<GameplayMemento>>(mementoOperator);
             
-            var snapshotOperator = new GameplaySnapshotOperator(mementoProvider: mementoOperator, mementoConsumer: mementoOperator);
-            context.RegisterContract<ISnapshotable<GameplaySnapshot>>(snapshotOperator);
+            var snapshotAdapter = new MementoToSnapshotAdapter<GameplayMemento, GameplaySnapshot>(mementoProvider: mementoOperator, mementoConsumer: mementoOperator);
+            context.RegisterContract<ISnapshotable<GameplaySnapshot>>(snapshotAdapter);
 
             var displayAdapter = new OneBitDisplayToIBoardDisplayAdapter(_nativeDisplay);
             var presenter = new BoardPresenter(context.Get<IGameplayEventsDispatcher>(), context.Get<IBoardStateProvider>(), displayAdapter);

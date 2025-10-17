@@ -8,18 +8,25 @@ namespace Features.Persistence.App
     public class HydrateMainMenuBeforeInitializationUseCase : IPreInitializable
     {
         private readonly ILoader _loader;
+        private readonly ISaveDataAssemblyTypeProvider _saveDataTypeProvider;
         private readonly IContinueGameIsAvailableHydratable _continueGameIsAvailableHydratable;
-        public int Order => PreInitializationOrder.HYDRATE_MAIN_MENU_FEATURES;
+        
+        public int PreInitOrder => PreInitializationOrder.HYDRATE_MAIN_MENU_FEATURES;
 
-        public HydrateMainMenuBeforeInitializationUseCase(IContinueGameIsAvailableHydratable continueGameIsAvailableHydratable, ILoader loader)
+        public HydrateMainMenuBeforeInitializationUseCase(
+            ILoader loader, 
+            IContinueGameIsAvailableHydratable continueGameIsAvailableHydratable, 
+            ISaveDataAssemblyTypeProvider saveDataTypeProvider)
         {
-            _continueGameIsAvailableHydratable = continueGameIsAvailableHydratable;
             _loader = loader;
+            _continueGameIsAvailableHydratable = continueGameIsAvailableHydratable;
+            _saveDataTypeProvider = saveDataTypeProvider;
         }
 
         public void PreInitialize()
         {
-            var saveExists = _loader.TryLoad(PersistenceConstants.SESSION_STATE_SAVE_KEY, typeof(SessionStateDataAssembly), out _);
+            // trying to load concrete type to make sure file is valid
+            var saveExists = _loader.TryLoad(PersistenceConstants.SESSION_STATE_SAVE_KEY, _saveDataTypeProvider.DataAssemblyType, out _);
             _continueGameIsAvailableHydratable.SetContinueGameIsAvailable(saveExists);
         }
     }

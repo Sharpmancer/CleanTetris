@@ -23,8 +23,7 @@ namespace Features.Score.Composition
             var scoreDisplayPresenter = new ScoreDisplayPresenter(model, _scoreDisplay);
             context.RegisterRunnable(scoreDisplayPresenter);
             
-            var snapshotOperator = new ScoreSnapshotOperator(mementoProvider: model, mementoConsumer: model);
-            context.RegisterContract<ISnapshotable<ScoreSnapshot>>(snapshotOperator);
+            context.RegisterContract<ISnapshotable<ScoreSnapshot>>(new MementoToSnapshotAdapter<ScoreMemento, ScoreSnapshot>(mementoProvider: model, mementoConsumer: model));
         }
     }
 }

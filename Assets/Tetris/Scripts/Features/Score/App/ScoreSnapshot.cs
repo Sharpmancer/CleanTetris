@@ -1,17 +1,21 @@
 ﻿using System;
 using Features.Score.Domain;
+using Libs.Core.Patterns.Snapshot;
 
 namespace Features.Score.App
 {
     [Serializable]
-    public record ScoreSnapshot
+    public struct ScoreSnapshot : ISnapshot<ScoreMemento>
     {
         public int Points;
         
-        internal static ScoreSnapshot FromMemento(ScoreMemento memento) => 
-            new() { Points = memento.Points };
-        
-        internal ScoreMemento ToMemento() => 
+        public ISnapshot<ScoreMemento> Hydrate(ScoreMemento memento)
+        {
+            Points = memento.Points;
+            return this;
+        }
+
+        public ScoreMemento ToMemento() => 
             new(Points);
     }
 }

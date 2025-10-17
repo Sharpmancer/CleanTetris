@@ -6,15 +6,17 @@ namespace Features.Gameplay.Domain
     {
         public readonly uint[] BoardState;
         public readonly ushort CurrentShape;
-        public readonly byte ShapePositionX;
-        public readonly byte ShapePositionY;
+        public readonly int ShapePositionX;
+        public readonly int ShapePositionY;
+        public readonly int TotalRowsCleared;
 
-        public GameplayMemento(uint[] boardState, ushort currentShape, byte shapePositionX, byte shapePositionY)
+        public GameplayMemento(uint[] boardState, ushort currentShape, int shapePositionX, int shapePositionY, int totalRowsCleared)
         {
             BoardState = boardState;
             CurrentShape = currentShape;
             ShapePositionX = shapePositionX;
             ShapePositionY = shapePositionY;
+            TotalRowsCleared = totalRowsCleared;
         }
     }
 }
