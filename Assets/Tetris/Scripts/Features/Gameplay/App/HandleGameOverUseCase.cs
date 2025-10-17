@@ -1,5 +1,4 @@
 using System;
-using Features.Gameplay.Domain;
 using Libs.Core.Lifecycle;
 using Libs.SceneManagement;
 
@@ -7,11 +6,11 @@ namespace Features.Gameplay.App
 {
     public class HandleGameOverUseCase : IInitializable, IDisposable
     {
-        private readonly IGameplayEvents _gameplayEvents;
+        private readonly Domain.IGameplayEventsDispatcher _gameplayEvents;
         private readonly IGameOverDialogueView _dialogueView;
         private readonly ISceneManager _sceneManager;
 
-        public HandleGameOverUseCase(IGameplayEvents gameplayEvents, IGameOverDialogueView dialogueView, ISceneManager sceneManager)
+        public HandleGameOverUseCase(Domain.IGameplayEventsDispatcher gameplayEvents, IGameOverDialogueView dialogueView, ISceneManager sceneManager)
         {
             _gameplayEvents = gameplayEvents;
             _dialogueView = dialogueView;

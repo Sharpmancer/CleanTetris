@@ -1,5 +1,4 @@
 using System;
-using Features.Gameplay.Domain;
 using Features.Input.App;
 using Libs.Core.Lifecycle;
 
@@ -7,10 +6,10 @@ namespace Features.Gameplay.App
 {
     public class ResetInputStateOnNewShapeSpawnedUseCase : IInitializable, IDisposable
     {
-        private readonly IGameplayEvents _gameplayEvents;
+        private readonly Domain.IGameplayEventsDispatcher _gameplayEvents;
         private readonly IInputStateResetter _inputStateResetter;
 
-        public ResetInputStateOnNewShapeSpawnedUseCase(IGameplayEvents gameplayEvents, IInputStateResetter inputStateResetter)
+        public ResetInputStateOnNewShapeSpawnedUseCase(Domain.IGameplayEventsDispatcher gameplayEvents, IInputStateResetter inputStateResetter)
         {
             _gameplayEvents = gameplayEvents;
             _inputStateResetter = inputStateResetter;

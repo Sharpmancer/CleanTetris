@@ -6,12 +6,12 @@ namespace Features.Gameplay.App
 {
     public class BoardPresenter : IInitializable, ITickable, IDisposable
     {
-        private readonly IGameplayEvents _events;
+        private readonly Domain.IGameplayEventsDispatcher _events;
         private readonly IBoardStateProvider _boardStateProvider;
         private readonly IGameplayBoardDisplay _boardDisplay;
         private bool _isDirty;
 
-        public BoardPresenter(IGameplayEvents events, IBoardStateProvider boardStateProvider, IGameplayBoardDisplay boardDisplay)
+        public BoardPresenter(Domain.IGameplayEventsDispatcher events, IBoardStateProvider boardStateProvider, IGameplayBoardDisplay boardDisplay)
         {
             _events = events;
             _boardStateProvider = boardStateProvider;

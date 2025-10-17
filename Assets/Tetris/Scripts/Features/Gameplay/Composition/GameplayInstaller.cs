@@ -8,6 +8,7 @@ using Libs.Core.Patterns.Snapshot;
 using Libs.OneBitDisplay;
 using Libs.SceneManagement;
 using UnityEngine;
+using IGameplayEventsDispatcher = Features.Gameplay.Domain.IGameplayEventsDispatcher;
 
 namespace Features.Gameplay.Composition
 {
@@ -20,7 +21,7 @@ namespace Features.Gameplay.Composition
         public override void Install(IInstallableContext context)
         {
             var model = new GameplayMediator(_boardSize.x, _boardSize.y);
-            context.RegisterContract<IGameplayEvents>(model);
+            context.RegisterContract<IGameplayEventsDispatcher>(model);
             context.RegisterContract<IBoardStateProvider>(model);
             context.RegisterContract<IGameplayCommandsPort>(model);
             context.RegisterRunnable(model);
@@ -33,20 +34,20 @@ namespace Features.Gameplay.Composition
             context.RegisterContract<ISnapshotable<GameplaySnapshot>>(snapshotOperator);
 
             var displayAdapter = new OneBitDisplayToIBoardDisplayAdapter(_nativeDisplay);
-            var presenter = new BoardPresenter(context.Get<IGameplayEvents>(), context.Get<IBoardStateProvider>(), displayAdapter);
+            var presenter = new BoardPresenter(context.Get<IGameplayEventsDispatcher>(), context.Get<IBoardStateProvider>(), displayAdapter);
             context.RegisterRunnable(presenter);
 
             var marshalInputUseCase = new MarshalPlayerInputUseCase(context.Get<IOutboundInputCommandDispatcher>(), context.Get<IGameplayCommandsPort>());
             context.RegisterRunnable(marshalInputUseCase);
 
-            var resetInputUseCase = new ResetInputStateOnNewShapeSpawnedUseCase(context.Get<IGameplayEvents>(), context.Get<IInputStateResetter>());
+            var resetInputUseCase = new ResetInputStateOnNewShapeSpawnedUseCase(context.Get<IGameplayEventsDispatcher>(), context.Get<IInputStateResetter>());
             context.RegisterRunnable(resetInputUseCase);
 
-            var handleGameOverUseCase = new HandleGameOverUseCase(context.Get<IGameplayEvents>(), _gameOverDialogue, context.Get<ISceneManager>());
+            var handleGameOverUseCase = new HandleGameOverUseCase(context.Get<IGameplayEventsDispatcher>(), _gameOverDialogue, context.Get<ISceneManager>());
             context.RegisterRunnable(handleGameOverUseCase);
             
             var eventsDispatcher = new GameplayEventsDispatcher(model);
-            context.RegisterContract<IGameplayEventsDispatcher>(eventsDispatcher);
+            context.RegisterContract<App.IGameplayEventsDispatcher>(eventsDispatcher);
             context.RegisterRunnable(eventsDispatcher);
         }
     }

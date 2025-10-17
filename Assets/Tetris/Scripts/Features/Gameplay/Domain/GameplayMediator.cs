@@ -6,7 +6,7 @@ using Libs.Core.Primitives;
 
 namespace Features.Gameplay.Domain
 {
-    public class GameplayMediator : IInitializable, ITickable, IGameplayEvents, IBoardStateProvider, IGameplayCommandsPort, IDisposable
+    public class GameplayMediator : IInitializable, ITickable, IGameplayEventsDispatcher, IBoardStateProvider, IGameplayCommandsPort, IDisposable
     {
         private readonly GameplayStateMachine _stateMachine;
         internal Board Board { get; }
