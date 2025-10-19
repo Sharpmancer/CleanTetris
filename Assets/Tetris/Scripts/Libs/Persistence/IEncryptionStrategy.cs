@@ -2,7 +2,7 @@
 {
     public interface IEncryptionStrategy
     {
-        string Encrypt(string plaintext);
-        string Decrypt(string ciphertext);
+        string Encrypt(string plaintext, out string meta);
+        string Decrypt(string meta, string ciphertext);
     }
 }

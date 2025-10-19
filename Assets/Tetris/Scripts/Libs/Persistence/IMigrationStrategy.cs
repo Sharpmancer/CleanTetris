@@ -2,6 +2,6 @@
 {
     public interface IMigrationStrategy
     {
-        void Migrate(string raw, out string migrated);
+        MigrationResult TryMigrate(string rawData, int dataVersion, int targetVersion, out string migrated);
     }
 }

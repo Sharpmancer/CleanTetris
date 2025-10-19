@@ -2,7 +2,12 @@
 {
     public sealed class NoMigration : IMigrationStrategy
     {
-        public void Migrate(string raw, out string migrated) => 
-            migrated = raw;
+        public MigrationResult TryMigrate(string rawData, int dataVersion, int targetVersion, out string migrated)
+        {
+            migrated = null;
+            if(dataVersion != targetVersion)
+                throw new System.Exception("DataVersion mismatch. No migration strategy assumes no version change either");
+            return MigrationResult.NoneNeeded;
+        }
     }
 }

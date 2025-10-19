@@ -6,22 +6,20 @@ namespace Libs.Persistence
     {
         private readonly ISerializationStrategy _serializer;
         private readonly IEncryptionStrategy _encryptor;
-        private readonly IMetadataStrategy _metadata;
         private readonly IMigrationStrategy _migrator;
-        private readonly IFileOperationsStrategy _writer;
+        private readonly IFileOperationsStrategy _fileOps;
+        private readonly IPayloadVersionProvider _versionProvider;
 
-        public PersistentDataHandler(
-            ISerializationStrategy serializer = null,
-            IEncryptionStrategy encryptor = null,
-            IMetadataStrategy metadata = null,
+        public PersistentDataHandler(ISerializationStrategy serializer = null, IEncryptionStrategy encryptor = null,
             IMigrationStrategy migrator = null,
-            IFileOperationsStrategy writer = null)
+            IFileOperationsStrategy _fileOps = null,
+            IPayloadVersionProvider versionProvider = null)
         {
             _serializer = serializer ?? new JsonUtilitySerializer();
             _encryptor = encryptor ?? new NoEncryption();
-            _metadata = metadata ?? new UnixTimeMetadata();
             _migrator = migrator ?? new NoMigration();
-            _writer = writer ?? new PersistentDataPathFileOperationsStrategy();
+            this._fileOps = _fileOps ?? new PersistentDataPathFileOperationsStrategy();
+            _versionProvider = versionProvider ?? new StaticPayloadVersionProvider(0);
         }
 
         public void Save(string key, object data)
@@ -31,30 +29,44 @@ namespace Libs.Persistence
             if (data is null)
                 throw new ArgumentNullException(nameof(data));
 
-            var payloadJson = _serializer.Serialize(data, data.GetType());
-            var encrypted = _encryptor.Encrypt(payloadJson);
-            var meta = _metadata.Create(data);
-            var envelope = new Envelope { Meta = meta, Payload = encrypted };
-            var envJson = _serializer.Serialize(envelope, envelope.GetType());
-            _writer.Write(key, envJson);
+            var serializedData = _serializer.Serialize(data, data.GetType());
+            var payload = new Payload(_versionProvider.Version, serializedData);
+            var serializedPayload = _serializer.Serialize(payload, typeof(Payload));
+            var encryptedPayload = _encryptor.Encrypt(serializedPayload, out var encryptionMeta);
+            var envelope = new Envelope(encryptionMeta: encryptionMeta, cipherText: encryptedPayload);
+            var serializedEnvelope = _serializer.Serialize(envelope, envelope.GetType());
+            _fileOps.Write(key, serializedEnvelope);
         }
 
-        public bool TryLoad(string key, Type snapshotType, out object data)
+        public bool TryLoad(string key, Type dataType, out object data)
         {
             data = null;
-            if (string.IsNullOrWhiteSpace(key) || snapshotType is null)
+            if (string.IsNullOrWhiteSpace(key) || dataType is null)
                 return false;
 
-            if (!_writer.TryRead(key, out var raw))
+            if (!_fileOps.TryRead(key, out var raw))
                 return false;
-
-            _migrator.Migrate(raw, out var migrated);
 
             try
             {
-                var envelope = (Envelope)_serializer.Deserialize(migrated, typeof(Envelope));
-                var decrypted = _encryptor.Decrypt(envelope.Payload ?? string.Empty);
-                data = _serializer.Deserialize(decrypted, snapshotType);
+                var envelope = (Envelope)_serializer.Deserialize(raw, typeof(Envelope));
+                var decryptedPayloadString = _encryptor.Decrypt(meta: envelope.EncryptionMeta, ciphertext: envelope.CipherText);
+                var payload = (Payload)_serializer.Deserialize(decryptedPayloadString, typeof(Payload));
+                var migrationResult = _migrator.TryMigrate(rawData: payload.Data, dataVersion: payload.Version, targetVersion: _versionProvider.Version, out var migratedData);
+                switch (migrationResult)
+                {
+                    case MigrationResult.NoneNeeded:
+                        data = _serializer.Deserialize(payload.Data, dataType);
+                        break;
+                    case MigrationResult.Success:
+                        data = _serializer.Deserialize(migratedData, dataType); 
+                        Save(key, data);
+                        break;
+                    case MigrationResult.Failed:
+                        throw new Exception($"migration {payload.Version}->{_versionProvider.Version} failed");
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(migrationResult), migrationResult, null);
+                }
             }
             catch
             {
@@ -65,6 +77,6 @@ namespace Libs.Persistence
         }
 
         public void Delete(string key) => 
-            _writer.Delete(key);
+            _fileOps.Delete(key);
     }
 }
