@@ -1,23 +1,20 @@
-﻿using Libs.Core.Patterns.Memento;
-
-namespace Features.Playfield.Domain
+﻿namespace Features.Playfield.Domain
 {
-    // TODO: internalize usage via domain aggregate
-    public class PlayfieldMementoOperator : IMementoProvider<GameplayMemento>, IMementoConsumer<GameplayMemento>
+    internal class PlayfieldMementoOperator
     {
         private readonly Playfield _playfield;
 
-        public PlayfieldMementoOperator(Playfield playfield) => 
+        internal PlayfieldMementoOperator(Playfield playfield) => 
             _playfield = playfield;
 
-        public GameplayMemento GetMemento() =>
+        internal GameplayMemento GetMemento() =>
             new(_playfield.BoardState.CloneUnderlyingValue(), 
                 _playfield.CurrentShape?.Mask ?? 0,
                 _playfield.ShapePosition.Column,
                 _playfield.ShapePosition.Row,
                 _playfield.TotalRowsCleared);
 
-        public void SetMemento(GameplayMemento memento)
+        internal void SetMemento(GameplayMemento memento)
         {
             _playfield.Board.SetValue(memento.BoardState);
             _playfield.TotalRowsCleared = memento.TotalRowsCleared;

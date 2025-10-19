@@ -3,7 +3,6 @@ using Features.Playfield.App;
 using Features.Playfield.Domain;
 using Features.Playfield.Infrastructure;
 using Libs.Bootstrap;
-using Libs.Core.Patterns.Memento;
 using Libs.Core.Patterns.Snapshot;
 using Libs.OneBitDisplay;
 using Libs.SceneManagement;
@@ -26,11 +25,7 @@ namespace Features.Playfield.Composition
             context.RegisterContract<IPlayfieldCommandsPort>(model);
             context.RegisterRunnable(model);
 
-            var mementoOperator = new PlayfieldMementoOperator(model);
-            context.RegisterContract<IMementoProvider<GameplayMemento>>(mementoOperator);
-            context.RegisterContract<IMementoConsumer<GameplayMemento>>(mementoOperator);
-            
-            var snapshotAdapter = new MementoToSnapshotAdapter<GameplayMemento, PlayfieldSnapshot>(mementoProvider: mementoOperator, mementoConsumer: mementoOperator);
+            var snapshotAdapter = new MementoToSnapshotAdapter<GameplayMemento, PlayfieldSnapshot>(mementoProvider: model, mementoConsumer: model);
             context.RegisterContract<ISnapshotable<PlayfieldSnapshot>>(snapshotAdapter);
 
             var displayAdapter = new OneBitDisplayToIBoardDisplayAdapter(_nativeDisplay);

@@ -2,12 +2,16 @@ using System;
 using Features.Playfield.Domain.States;
 using Libs.Bitmasks;
 using Libs.Core.Lifecycle;
+using Libs.Core.Patterns.Memento;
 using Libs.Core.Primitives;
 
 namespace Features.Playfield.Domain
 {
-    public class Playfield : IPlayfieldEventsDispatcher, IPlayfieldStateProvider, IPlayfieldCommandsPort, IInitializable, ITickable, IDisposable
+    public class Playfield : IPlayfieldEventsDispatcher, IPlayfieldStateProvider, IPlayfieldCommandsPort,
+        IMementoProvider<GameplayMemento>, IMementoConsumer<GameplayMemento>,
+        IInitializable, ITickable, IDisposable
     {
+        private readonly PlayfieldMementoOperator _mementoOperator;
         private readonly PlayfieldStateMachine _stateMachine;
         private readonly IGravityCalculationStrategy _gravityCalculationStrategy;
         private readonly ILevelCalculationStrategy _levelCalculationStrategy;
@@ -30,8 +34,9 @@ namespace Features.Playfield.Domain
         {
             _gravityCalculationStrategy = gravityCalculationStrategy;
             _levelCalculationStrategy = levelCalculationStrategy;
-            Board = new Board(boardWidth, boardHeight);
             _stateMachine = new PlayfieldStateMachine();
+            _mementoOperator = new PlayfieldMementoOperator(this);
+            Board = new Board(boardWidth, boardHeight);
         }
 
         public void Initialize()
@@ -77,5 +82,11 @@ namespace Features.Playfield.Domain
 
         public void Dispose() => 
             _stateMachine.Dispose();
+
+        public GameplayMemento GetMemento() => 
+            _mementoOperator.GetMemento();
+
+        public void SetMemento(GameplayMemento Memento) => 
+            _mementoOperator.SetMemento(Memento);
     }
 }
