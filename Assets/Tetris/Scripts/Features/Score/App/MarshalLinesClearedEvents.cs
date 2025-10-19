@@ -1,5 +1,5 @@
 using System;
-using Features.Gameplay.App;
+using Features.Playfield.App;
 using Features.Score.Domain;
 using Libs.Core.Lifecycle;
 using Libs.Core.Primitives;
@@ -9,9 +9,9 @@ namespace Features.Score.App
     public class MarshalLinesClearedEvents : IInitializable, IDisposable
     {
         private readonly ILinesClearedHandler _linesClearedHandler;
-        private readonly IGameplayEventsDispatcher _gameEventsDispatcher;
+        private readonly IPlayfieldEventsDispatcher _gameEventsDispatcher;
 
-        public MarshalLinesClearedEvents(ILinesClearedHandler linesClearedHandler, IGameplayEventsDispatcher gameEventsDispatcher)
+        public MarshalLinesClearedEvents(ILinesClearedHandler linesClearedHandler, IPlayfieldEventsDispatcher gameEventsDispatcher)
         {
             _linesClearedHandler = linesClearedHandler;
             _gameEventsDispatcher = gameEventsDispatcher;

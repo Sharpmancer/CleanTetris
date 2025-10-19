@@ -1,5 +1,5 @@
 ﻿using System;
-using Features.Gameplay.App;
+using Features.Playfield.App;
 using Libs.Core.Lifecycle;
 using Libs.Persistence;
 
@@ -7,15 +7,15 @@ namespace Features.Persistence.App
 {
     public class DeleteSessionStateSaveFileOnGameOverUseCase : DeleteSaveFileUseCase, IInitializable, IDisposable
     {
-        private readonly IGameplayEventsDispatcher _gameplayEventsDispatcher;
+        private readonly IPlayfieldEventsDispatcher _playfieldEventsDispatcher;
 
-        public DeleteSessionStateSaveFileOnGameOverUseCase(IGameplayEventsDispatcher gameplayEventsDispatcher, ISaveDeleter saveDeleter) : base(saveDeleter) => 
-            _gameplayEventsDispatcher = gameplayEventsDispatcher;
+        public DeleteSessionStateSaveFileOnGameOverUseCase(IPlayfieldEventsDispatcher playfieldEventsDispatcher, ISaveDeleter saveDeleter) : base(saveDeleter) => 
+            _playfieldEventsDispatcher = playfieldEventsDispatcher;
 
         public void Initialize() => 
-            _gameplayEventsDispatcher.OnGameOver += DeleteSaveFile;
+            _playfieldEventsDispatcher.OnGameOver += DeleteSaveFile;
 
         public void Dispose() => 
-            _gameplayEventsDispatcher.OnGameOver -= DeleteSaveFile;
+            _playfieldEventsDispatcher.OnGameOver -= DeleteSaveFile;
     }
 }

@@ -1,5 +1,5 @@
-﻿using Features.Gameplay.App;
-using Features.Persistence.App;
+﻿using Features.Persistence.App;
+using Features.Playfield.App;
 using Features.Score.App;
 using Libs.Bootstrap;
 using Libs.Core.Patterns.Snapshot;
@@ -12,11 +12,11 @@ namespace Features.Persistence.Composition
         public override void Install(IInstallableContext context)
         {
             var saveDataAssembleStrategy = new ManualSaveDataAssembleStrategy(
-                context.Get<ISnapshotable<GameplaySnapshot>>(), 
+                context.Get<ISnapshotable<PlayfieldSnapshot>>(), 
                 context.Get<ISnapshotable<ScoreSnapshot>>());
             
             var saveUseCase = new SaveOnGameBoardStateChangedUseCase(
-                context.Get<IGameplayEventsDispatcher>(), 
+                context.Get<IPlayfieldEventsDispatcher>(), 
                 context.Get<ISaver>(), 
                 saveDataAssembleStrategy);
 
@@ -25,7 +25,7 @@ namespace Features.Persistence.Composition
                 saveDataAssembleStrategy);
             
             var deleteUseCase = new DeleteSessionStateSaveFileOnGameOverUseCase(
-                context.Get<IGameplayEventsDispatcher>(), 
+                context.Get<IPlayfieldEventsDispatcher>(), 
                 context.Get<ISaveDeleter>());
             
             context.RegisterRunnable(saveUseCase);

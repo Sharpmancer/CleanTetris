@@ -1,18 +1,19 @@
 ﻿using System;
-using Features.Gameplay.App;
+using Features.Playfield.App;
 using Features.Score.App;
+using UnityEngine.Serialization;
 
 namespace Features.Persistence.App
 {
     [Serializable]
     public struct SessionStateDataAssembly
     {
-        public GameplaySnapshot GameplaySnapshot;
+        public PlayfieldSnapshot PlayfieldSnapshot;
         public ScoreSnapshot ScoreSnapshot;
 
-        public SessionStateDataAssembly(GameplaySnapshot gameplaySnapshot, ScoreSnapshot scoreSnapshot)
+        public SessionStateDataAssembly(PlayfieldSnapshot playfieldSnapshot, ScoreSnapshot scoreSnapshot)
         {
-            GameplaySnapshot = gameplaySnapshot;
+            PlayfieldSnapshot = playfieldSnapshot;
             ScoreSnapshot = scoreSnapshot;
         }
     }

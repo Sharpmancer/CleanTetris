@@ -1,4 +1,4 @@
-using Features.Gameplay.App;
+using Features.Playfield.App;
 using Features.Score.App;
 using Features.Score.Domain;
 using Features.Score.Infrastructure;
@@ -17,7 +17,7 @@ namespace Features.Score.Composition
         {
             var model = new ScoreTracker(_config);
 
-            var handleEventsUseCase = new MarshalLinesClearedEvents(model, context.Get<IGameplayEventsDispatcher>());
+            var handleEventsUseCase = new MarshalLinesClearedEvents(model, context.Get<IPlayfieldEventsDispatcher>());
             context.RegisterRunnable(handleEventsUseCase);
             
             var scoreDisplayPresenter = new ScoreDisplayPresenter(model, _scoreDisplay);

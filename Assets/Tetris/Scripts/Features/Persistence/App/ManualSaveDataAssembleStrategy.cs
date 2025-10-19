@@ -1,5 +1,5 @@
 ﻿using System;
-using Features.Gameplay.App;
+using Features.Playfield.App;
 using Features.Score.App;
 using Libs.Core.Patterns.Snapshot;
 
@@ -7,12 +7,12 @@ namespace Features.Persistence.App
 {
     public class ManualSaveDataAssembleStrategy : ISaveDataAssembleStrategy
     {
-        private readonly ISnapshotable<GameplaySnapshot> _gameplaySnapshotable;
+        private readonly ISnapshotable<PlayfieldSnapshot> _gameplaySnapshotable;
         private readonly ISnapshotable<ScoreSnapshot> _scoreSnapshotable;
         
         public Type DataAssemblyType => typeof(SessionStateDataAssembly);
 
-        public ManualSaveDataAssembleStrategy(ISnapshotable<GameplaySnapshot> gameplaySnapshotable, ISnapshotable<ScoreSnapshot> scoreSnapshotable) 
+        public ManualSaveDataAssembleStrategy(ISnapshotable<PlayfieldSnapshot> gameplaySnapshotable, ISnapshotable<ScoreSnapshot> scoreSnapshotable) 
         {
             _gameplaySnapshotable = gameplaySnapshotable;
             _scoreSnapshotable = scoreSnapshotable;
@@ -25,7 +25,7 @@ namespace Features.Persistence.App
 
         public void DisassembleSaveData(object saveData)
         {
-            _gameplaySnapshotable.SetSnapshot(((SessionStateDataAssembly)saveData).GameplaySnapshot);
+            _gameplaySnapshotable.SetSnapshot(((SessionStateDataAssembly)saveData).PlayfieldSnapshot);
             _scoreSnapshotable.SetSnapshot(((SessionStateDataAssembly)saveData).ScoreSnapshot);
         }
     }

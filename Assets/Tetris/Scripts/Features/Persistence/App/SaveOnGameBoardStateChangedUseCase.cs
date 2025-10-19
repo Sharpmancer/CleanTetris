@@ -1,5 +1,5 @@
 ﻿using System;
-using Features.Gameplay.App;
+using Features.Playfield.App;
 using Libs.Core.Lifecycle;
 using Libs.Persistence;
 
@@ -8,10 +8,10 @@ namespace Features.Persistence.App
     public class SaveOnGameBoardStateChangedUseCase : IInitializable, IDisposable
     {
         private readonly ISaver _saver;
-        private readonly IGameplayEventsDispatcher _gameEvents;
+        private readonly IPlayfieldEventsDispatcher _gameEvents;
         private readonly ISaveDataAssembleStrategy _dataAssembleStrategy;
 
-        public SaveOnGameBoardStateChangedUseCase(IGameplayEventsDispatcher gameEvents, ISaver saver, ISaveDataAssembleStrategy dataAssembleStrategy)
+        public SaveOnGameBoardStateChangedUseCase(IPlayfieldEventsDispatcher gameEvents, ISaver saver, ISaveDataAssembleStrategy dataAssembleStrategy)
         {
             _gameEvents = gameEvents;
             _saver = saver;
