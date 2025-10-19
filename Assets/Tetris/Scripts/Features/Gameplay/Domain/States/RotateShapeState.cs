@@ -17,6 +17,9 @@ namespace Features.Gameplay.Domain.States
                 gameplay.Board.PlaceShape(gameplay.CurrentShape, gameplay.ShapePosition);
                 gameplay.HandleBoardStateChanged();
             }
+            else
+                // returning the shape back without changes
+                gameplay.Board.PlaceShape(gameplay.CurrentShape, gameplay.ShapePosition);
             
             gameplay.ChangeState<IdleState>();
         }
