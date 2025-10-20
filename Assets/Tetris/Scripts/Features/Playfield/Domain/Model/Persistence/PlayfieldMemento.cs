@@ -2,7 +2,7 @@
 
 namespace Features.Playfield.Domain
 {
-    public readonly struct GameplayMemento : IMemento
+    public readonly struct PlayfieldMemento : IMemento
     {
         public readonly uint[] BoardState;
         public readonly ushort CurrentShape;
@@ -10,7 +10,7 @@ namespace Features.Playfield.Domain
         public readonly int ShapePositionY;
         public readonly int TotalRowsCleared;
 
-        public GameplayMemento(uint[] boardState, ushort currentShape, int shapePositionX, int shapePositionY, int totalRowsCleared)
+        public PlayfieldMemento(uint[] boardState, ushort currentShape, int shapePositionX, int shapePositionY, int totalRowsCleared)
         {
             BoardState = boardState;
             CurrentShape = currentShape;

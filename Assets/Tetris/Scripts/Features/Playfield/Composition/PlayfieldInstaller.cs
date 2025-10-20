@@ -25,7 +25,7 @@ namespace Features.Playfield.Composition
             context.RegisterContract<IPlayfieldCommandsPort>(model);
             context.RegisterRunnable(model);
 
-            var snapshotAdapter = new MementoToSnapshotAdapter<GameplayMemento, PlayfieldSnapshot>(mementoProvider: model, mementoConsumer: model);
+            var snapshotAdapter = new MementoToSnapshotAdapter<PlayfieldMemento, PlayfieldSnapshot>(mementoProvider: model, mementoConsumer: model);
             context.RegisterContract<ISnapshotable<PlayfieldSnapshot>>(snapshotAdapter);
 
             var displayAdapter = new OneBitDisplayToIBoardDisplayAdapter(_nativeDisplay);

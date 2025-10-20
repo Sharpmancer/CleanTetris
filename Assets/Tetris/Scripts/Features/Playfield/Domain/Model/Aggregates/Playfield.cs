@@ -7,8 +7,7 @@ using Libs.Core.Primitives;
 
 namespace Features.Playfield.Domain
 {
-    public class Playfield : IPlayfieldEventsDispatcher, IPlayfieldStateProvider, IPlayfieldCommandsPort,
-        IMementoProvider<GameplayMemento>, IMementoConsumer<GameplayMemento>,
+    public class Playfield : IPlayfieldEventsDispatcher, IPlayfieldStateProvider, IPlayfieldCommandsPort, IPlayfieldPersistencePort,
         IInitializable, ITickable, IDisposable
     {
         private readonly PlayfieldMementoOperator _mementoOperator;
@@ -83,10 +82,10 @@ namespace Features.Playfield.Domain
         public void Dispose() => 
             _stateMachine.Dispose();
 
-        public GameplayMemento GetMemento() => 
+        public PlayfieldMemento GetMemento() => 
             _mementoOperator.GetMemento();
 
-        public void SetMemento(GameplayMemento Memento) => 
+        public void SetMemento(PlayfieldMemento Memento) => 
             _mementoOperator.SetMemento(Memento);
     }
 }

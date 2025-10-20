@@ -5,7 +5,7 @@ using Libs.Core.Patterns.Snapshot;
 namespace Features.Playfield.App
 {
     [Serializable]
-    public struct PlayfieldSnapshot : ISnapshot<GameplayMemento>
+    public struct PlayfieldSnapshot : ISnapshot<PlayfieldMemento>
     {
         public uint[] BoardState;
         public ushort CurrentShape;
@@ -13,10 +13,10 @@ namespace Features.Playfield.App
         public byte ShapePositionY;
         public ushort TotalRowsCleared;
 
-        public GameplayMemento ToMemento() => 
+        public PlayfieldMemento ToMemento() => 
             new(BoardState, CurrentShape, ShapePositionX, ShapePositionY, TotalRowsCleared);
 
-        public ISnapshot<GameplayMemento> Hydrate(GameplayMemento memento)
+        public ISnapshot<PlayfieldMemento> Hydrate(PlayfieldMemento memento)
         {
             BoardState = memento.BoardState;
             CurrentShape = memento.CurrentShape;

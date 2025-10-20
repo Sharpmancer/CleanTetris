@@ -7,14 +7,14 @@
         internal PlayfieldMementoOperator(Playfield playfield) => 
             _playfield = playfield;
 
-        internal GameplayMemento GetMemento() =>
+        internal PlayfieldMemento GetMemento() =>
             new(_playfield.BoardState.CloneUnderlyingValue(), 
                 _playfield.CurrentShape?.Mask ?? 0,
                 _playfield.ShapePosition.Column,
                 _playfield.ShapePosition.Row,
                 _playfield.TotalRowsCleared);
 
-        internal void SetMemento(GameplayMemento memento)
+        internal void SetMemento(PlayfieldMemento memento)
         {
             _playfield.Board.SetValue(memento.BoardState);
             _playfield.TotalRowsCleared = memento.TotalRowsCleared;
