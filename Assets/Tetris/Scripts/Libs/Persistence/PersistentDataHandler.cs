@@ -12,13 +12,13 @@ namespace Libs.Persistence
 
         public PersistentDataHandler(ISerializationStrategy serializer = null, IEncryptionStrategy encryptor = null,
             IMigrationStrategy migrator = null,
-            IFileOperationsStrategy _fileOps = null,
+            IFileOperationsStrategy fileOps = null,
             IPayloadVersionProvider versionProvider = null)
         {
             _serializer = serializer ?? new JsonUtilitySerializer();
             _encryptor = encryptor ?? new NoEncryption();
             _migrator = migrator ?? new NoMigration();
-            this._fileOps = _fileOps ?? new PersistentDataPathFileOperationsStrategy();
+            _fileOps = fileOps ?? new PersistentDataPathFileOperationsStrategy();
             _versionProvider = versionProvider ?? new StaticPayloadVersionProvider(0);
         }
 
