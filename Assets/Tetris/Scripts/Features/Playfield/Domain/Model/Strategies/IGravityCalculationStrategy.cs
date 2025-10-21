@@ -1,6 +1,6 @@
 ﻿namespace Features.Playfield.Domain
 {
-    public interface IGravityCalculationStrategy
+    internal interface IGravityCalculationStrategy
     {
         float GetFallRowDuration(int level);
     }

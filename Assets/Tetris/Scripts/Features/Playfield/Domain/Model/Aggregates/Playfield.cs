@@ -7,7 +7,7 @@ using Libs.Core.Primitives;
 
 namespace Features.Playfield.Domain
 {
-    public class Playfield : IPlayfieldEventsDispatcher, IPlayfieldStateProvider, IPlayfieldCommandsPort, IPlayfieldPersistencePort,
+    internal class Playfield : IPlayfieldEventsDispatcher, IPlayfieldStateProvider, IPlayfieldCommandsPort, IPlayfieldPersistencePort,
         IInitializable, ITickable, IDisposable
     {
         private readonly PlayfieldMementoOperator _mementoOperator;

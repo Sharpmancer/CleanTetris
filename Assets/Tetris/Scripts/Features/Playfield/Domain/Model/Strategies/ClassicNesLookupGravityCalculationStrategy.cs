@@ -2,7 +2,7 @@
 
 namespace Features.Playfield.Domain
 {
-    public class ClassicNesLookupGravityCalculationStrategy : IGravityCalculationStrategy
+    internal class ClassicNesLookupGravityCalculationStrategy : IGravityCalculationStrategy
     {
         private const int NES_FRAMERATE = 60;
 

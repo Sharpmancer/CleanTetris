@@ -1,6 +1,6 @@
 ﻿namespace Features.Playfield.Domain
 {
-    public interface ILevelCalculationStrategy
+    internal interface ILevelCalculationStrategy
     {
         int GetLevel(int totalRowsCleared);
     }

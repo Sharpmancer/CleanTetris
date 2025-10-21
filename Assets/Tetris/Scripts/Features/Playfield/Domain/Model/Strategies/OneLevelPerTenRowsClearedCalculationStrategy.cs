@@ -1,6 +1,6 @@
 ﻿namespace Features.Playfield.Domain
 {
-    public class OneLevelPerTenRowsClearedCalculationStrategy : ILevelCalculationStrategy
+    internal class OneLevelPerTenRowsClearedCalculationStrategy : ILevelCalculationStrategy
     {
         public int GetLevel(int totalRowsCleared) => 
             totalRowsCleared / 10;
