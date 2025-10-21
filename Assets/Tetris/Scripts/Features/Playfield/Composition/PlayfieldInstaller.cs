@@ -1,11 +1,12 @@
+using System;
 using Features.Input.App;
 using Features.Playfield.App;
-using Features.Playfield.Domain;
 using Features.Playfield.Domain.Api;
 using Features.Playfield.Domain.Model;
 using Features.Playfield.Infrastructure;
 using Libs.Bootstrap;
 using Libs.Core.Patterns.Snapshot;
+using Libs.Core.Rng;
 using Libs.OneBitDisplay;
 using Libs.SceneManagement;
 using UnityEngine;
@@ -15,13 +16,28 @@ namespace Features.Playfield.Composition
 {
     public class PlayfieldInstaller : Installer
     {
+        private enum ShapeSpawnRandomType
+        {
+            PureRandom,
+            BagOf7,
+        }
+        
+        [SerializeField] private ShapeSpawnRandomType _shapeSpawnRandomType;
         [SerializeField] private Vector2Int _boardSize = new(10, 20);
         [SerializeField] private OneBitDisplay _nativeDisplay;
         [SerializeField] private GameOverDialogue _gameOverDialogue;
         
         public override void Install(IInstallableContext context)
         {
-            var model = new Domain.Model.Playfield(_boardSize.x, _boardSize.y, new ClassicNesLookupGravityCalculationStrategy(), new OneLevelPerTenRowsClearedCalculationStrategy());
+            var model = new Domain.Model.Playfield(_boardSize.x, _boardSize.y, 
+                new ClassicNesLookupGravityCalculationStrategy(), 
+                new OneLevelPerTenRowsClearedCalculationStrategy(),
+                _shapeSpawnRandomType switch {
+                        ShapeSpawnRandomType.PureRandom => new RandomShapeChoiceStrategy(new SystemRandomBasedRng()),
+                        ShapeSpawnRandomType.BagOf7 => new BagOf7ShapeChoiceStrategy(),
+                        _ => throw new ArgumentOutOfRangeException()
+                    }
+                );
             context.RegisterContract<IPlayfieldEventsDispatcher>(model);
             context.RegisterContract<IPlayfieldStateProvider>(model);
             context.RegisterContract<IPlayfieldCommandsPort>(model);

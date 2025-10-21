@@ -30,16 +30,12 @@ namespace Features.Playfield.Domain.Model
         internal static readonly Shape L = new(0x08E0); // 0000 1000 1110 0000
         internal static readonly Shape J = new(0x02E0); // 0000 0010 1110 0000
 
-        private static readonly IReadOnlyList<Shape> DefaultShapes = typeof(Shape)
+        internal static readonly IReadOnlyList<Shape> DefaultShapes = typeof(Shape)
             .GetFields(Flags.NonPublic | Flags.Static)
             .Where(f => f.FieldType == typeof(Shape))
             .Select(f => (Shape)f.GetValue(null)!)
             .ToArray();
 
-        // TODO: mark domain assembly "no engine references", fix dependencies
-        internal static Shape Random => 
-            DefaultShapes[UnityEngine.Random.Range(0, DefaultShapes.Count)];
-        
         internal Shape() =>
             SetNewValue(0);
 

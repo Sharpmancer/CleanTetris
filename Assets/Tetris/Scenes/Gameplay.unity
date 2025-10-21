@@ -792,6 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9da5d4e22a4e11ab8eb4db6485f475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shapeSpawnRandomType: 1
   _boardSize: {x: 10, y: 20}
   _nativeDisplay: {fileID: 2031537980}
   _gameOverDialogue: {fileID: 127619082}

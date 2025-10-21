@@ -13,6 +13,7 @@ namespace Features.Playfield.Domain.Model
         private readonly PlayfieldStateMachine _stateMachine;
         private readonly IGravityCalculationStrategy _gravityCalculationStrategy;
         private readonly ILevelCalculationStrategy _levelCalculationStrategy;
+        private readonly IShapeChoiceStrategy _shapeChoiceStrategy;
 
         internal Board Board { get; }
         internal Shape CurrentShape { get; set; }
@@ -28,10 +29,11 @@ namespace Features.Playfield.Domain.Model
         public event Action OnNewShapeSpawned;
         public event Action OnGameOver;
 
-        public Playfield(int boardWidth, int boardHeight, IGravityCalculationStrategy gravityCalculationStrategy, ILevelCalculationStrategy levelCalculationStrategy)
+        public Playfield(int boardWidth, int boardHeight, IGravityCalculationStrategy gravityCalculationStrategy, ILevelCalculationStrategy levelCalculationStrategy, IShapeChoiceStrategy shapeChoiceStrategy)
         {
             _gravityCalculationStrategy = gravityCalculationStrategy;
             _levelCalculationStrategy = levelCalculationStrategy;
+            _shapeChoiceStrategy = shapeChoiceStrategy;
             _stateMachine = new PlayfieldStateMachine();
             _mementoOperator = new PlayfieldMementoOperator(this);
             Board = new Board(boardWidth, boardHeight);
@@ -77,6 +79,9 @@ namespace Features.Playfield.Domain.Model
             CurrentCommand = PlayfieldCommand.None;
             OnNewShapeSpawned?.Invoke();
         }
+
+        internal Shape GetNextShape() =>
+            _shapeChoiceStrategy.GetNext();
 
         public void Dispose() => 
             _stateMachine.Dispose();
