@@ -4,14 +4,14 @@ using Libs.Core.Primitives;
 
 namespace Features.Playfield.App
 {
-    public class PlayfieldEventsDispatcher : IPlayfieldEventsDispatcher, IInitializable, IDisposable
+    internal class PlayfieldEventsDispatcher : IPlayfieldEventsDispatcher, IInitializable, IDisposable
     {
-        private readonly Domain.IPlayfieldEventsDispatcher _domainEvents;
+        private readonly Domain.Api.IPlayfieldEventsDispatcher _domainEvents;
         public event Action<UpToFourBytes> OnRowsCleared;
         public event Action OnBoardStateChanged;
         public event Action OnGameOver;
 
-        public PlayfieldEventsDispatcher(Domain.IPlayfieldEventsDispatcher domainEvents) => 
+        internal PlayfieldEventsDispatcher(Domain.Api.IPlayfieldEventsDispatcher domainEvents) => 
             _domainEvents = domainEvents;
 
         public void Initialize()

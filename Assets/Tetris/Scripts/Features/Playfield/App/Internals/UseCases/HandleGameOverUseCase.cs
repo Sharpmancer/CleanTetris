@@ -4,13 +4,13 @@ using Libs.SceneManagement;
 
 namespace Features.Playfield.App
 {
-    public class HandleGameOverUseCase : IInitializable, IDisposable
+    internal class HandleGameOverUseCase : IInitializable, IDisposable
     {
-        private readonly Domain.IPlayfieldEventsDispatcher _playfieldEvents;
+        private readonly Domain.Api.IPlayfieldEventsDispatcher _playfieldEvents;
         private readonly IGameOverDialogueView _dialogueView;
         private readonly ISceneManager _sceneManager;
 
-        public HandleGameOverUseCase(Domain.IPlayfieldEventsDispatcher playfieldEvents, IGameOverDialogueView dialogueView, ISceneManager sceneManager)
+        internal HandleGameOverUseCase(Domain.Api.IPlayfieldEventsDispatcher playfieldEvents, IGameOverDialogueView dialogueView, ISceneManager sceneManager)
         {
             _playfieldEvents = playfieldEvents;
             _dialogueView = dialogueView;

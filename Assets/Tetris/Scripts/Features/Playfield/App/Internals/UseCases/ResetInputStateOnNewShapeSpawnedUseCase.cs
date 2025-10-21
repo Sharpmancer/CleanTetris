@@ -4,12 +4,12 @@ using Libs.Core.Lifecycle;
 
 namespace Features.Playfield.App
 {
-    public class ResetInputStateOnNewShapeSpawnedUseCase : IInitializable, IDisposable
+    internal class ResetInputStateOnNewShapeSpawnedUseCase : IInitializable, IDisposable
     {
-        private readonly Domain.IPlayfieldEventsDispatcher _playfieldEvents;
+        private readonly Domain.Api.IPlayfieldEventsDispatcher _playfieldEvents;
         private readonly IInputStateResetter _inputStateResetter;
 
-        public ResetInputStateOnNewShapeSpawnedUseCase(Domain.IPlayfieldEventsDispatcher playfieldEvents, IInputStateResetter inputStateResetter)
+        internal ResetInputStateOnNewShapeSpawnedUseCase(Domain.Api.IPlayfieldEventsDispatcher playfieldEvents, IInputStateResetter inputStateResetter)
         {
             _playfieldEvents = playfieldEvents;
             _inputStateResetter = inputStateResetter;

@@ -1,17 +1,17 @@
 using System;
-using Features.Playfield.Domain;
+using Features.Playfield.Domain.Api;
 using Libs.Core.Lifecycle;
 
 namespace Features.Playfield.App
 {
-    public class BoardPresenter : IInitializable, ITickable, IDisposable
+    internal class BoardPresenter : IInitializable, ITickable, IDisposable
     {
-        private readonly Domain.IPlayfieldEventsDispatcher _events;
+        private readonly Domain.Api.IPlayfieldEventsDispatcher _events;
         private readonly IPlayfieldStateProvider _playfieldStateProvider;
         private readonly IPlayfieldDisplay _boardDisplay;
         private bool _isDirty;
 
-        public BoardPresenter(Domain.IPlayfieldEventsDispatcher events, IPlayfieldStateProvider playfieldStateProvider, IPlayfieldDisplay boardDisplay)
+        internal BoardPresenter(Domain.Api.IPlayfieldEventsDispatcher events, IPlayfieldStateProvider playfieldStateProvider, IPlayfieldDisplay boardDisplay)
         {
             _events = events;
             _playfieldStateProvider = playfieldStateProvider;

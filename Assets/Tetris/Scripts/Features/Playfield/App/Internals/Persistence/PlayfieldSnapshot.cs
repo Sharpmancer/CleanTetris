@@ -1,5 +1,5 @@
 ﻿using System;
-using Features.Playfield.Domain;
+using Features.Playfield.Domain.Model;
 using Libs.Core.Patterns.Snapshot;
 
 namespace Features.Playfield.App

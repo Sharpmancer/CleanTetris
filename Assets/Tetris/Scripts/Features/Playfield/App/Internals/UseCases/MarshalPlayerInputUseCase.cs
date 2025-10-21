@@ -1,16 +1,16 @@
 using System;
 using Features.Input.App;
-using Features.Playfield.Domain;
+using Features.Playfield.Domain.Api;
 using Libs.Core.Lifecycle;
 
 namespace Features.Playfield.App
 {
-    public class MarshalPlayerInputUseCase : IInitializable, IDisposable
+    internal class MarshalPlayerInputUseCase : IInitializable, IDisposable
     {
         private readonly IOutboundInputCommandDispatcher _inputCommandDispatcher;
         private readonly IPlayfieldCommandsPort _playfieldCommandsPort;
 
-        public MarshalPlayerInputUseCase(IOutboundInputCommandDispatcher inputCommandDispatcher, IPlayfieldCommandsPort playfieldCommandsPort)
+        internal MarshalPlayerInputUseCase(IOutboundInputCommandDispatcher inputCommandDispatcher, IPlayfieldCommandsPort playfieldCommandsPort)
         {
             _inputCommandDispatcher = inputCommandDispatcher;
             _playfieldCommandsPort = playfieldCommandsPort;
