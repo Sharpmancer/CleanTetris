@@ -24,7 +24,7 @@ namespace Features.Playfield.Domain.Model
         internal float GravityTickInterval { get; private set; }
 
         public IReadOnlyBitMask2D BoardState => Board.Mask;
-        public event Action<UpToFourBytes> OnRowsCleared;
+        public event Action<ClearedRowsIndices> OnRowsCleared;
         public event Action OnBoardStateChanged;
         public event Action OnNewShapeSpawned;
         public event Action OnGameOver;
@@ -60,7 +60,7 @@ namespace Features.Playfield.Domain.Model
         internal void HandleBoardStateChanged() => 
             OnBoardStateChanged?.Invoke();
 
-        internal void HandleRowsCleared(UpToFourBytes rows)
+        internal void HandleRowsCleared(ClearedRowsIndices rows)
         {
             TotalRowsCleared += rows.Count;
             RecalculateGravity();

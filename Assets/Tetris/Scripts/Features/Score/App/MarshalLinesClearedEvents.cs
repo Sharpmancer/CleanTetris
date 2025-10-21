@@ -23,7 +23,7 @@ namespace Features.Score.App
         public void Dispose() => 
             _gameEventsDispatcher.OnRowsCleared -= HandleRowsCleared;
 
-        private void HandleRowsCleared(UpToFourBytes obj) => 
-            _linesClearedHandler.HandleLinesCleared(obj.Count);
+        private void HandleRowsCleared(int obj) => 
+            _linesClearedHandler.HandleLinesCleared(obj);
     }
 }

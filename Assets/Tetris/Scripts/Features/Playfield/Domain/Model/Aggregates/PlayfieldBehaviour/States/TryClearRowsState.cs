@@ -1,3 +1,4 @@
+using Features.Playfield.Domain.Api;
 using Libs.Core.Primitives;
 
 namespace Features.Playfield.Domain.Model
@@ -20,7 +21,7 @@ namespace Features.Playfield.Domain.Model
             if (rowsCleared.Count > 0)
             {
                 gameplay.HandleBoardStateChanged();
-                gameplay.HandleRowsCleared(rowsCleared);
+                gameplay.HandleRowsCleared(new ClearedRowsIndices(rowsCleared));
                 gameplay.ChangeState<CompactBoardState>();
             }
             else

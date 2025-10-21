@@ -8,7 +8,7 @@ namespace Features.Playfield.App
     internal class PlayfieldEventsDispatcher : IPlayfieldEventsDispatcher, IInitializable, IDisposable
     {
         private readonly Domain.Api.IPlayfieldEventsDispatcher _domainEvents;
-        public event Action<UpToFourBytes> OnRowsCleared;
+        public event Action<int> OnRowsCleared;
         public event Action OnBoardStateChanged;
         public event Action OnGameOver;
 
@@ -29,8 +29,8 @@ namespace Features.Playfield.App
             _domainEvents.OnGameOver -= HandleGameOver;
         }
 
-        private void HandleRowsCleared(UpToFourBytes obj) => 
-            OnRowsCleared?.Invoke(obj);
+        private void HandleRowsCleared(ClearedRowsIndices obj) => 
+            OnRowsCleared?.Invoke(obj.Count);
 
         private void HandleBoardStateChanged() => 
             OnBoardStateChanged?.Invoke();
