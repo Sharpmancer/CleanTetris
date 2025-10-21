@@ -1,6 +1,6 @@
 using Libs.Bitmasks;
 
-namespace Features.Playfield.Domain
+namespace Features.Playfield.Domain.Api
 {
     public interface IPlayfieldStateProvider
     {

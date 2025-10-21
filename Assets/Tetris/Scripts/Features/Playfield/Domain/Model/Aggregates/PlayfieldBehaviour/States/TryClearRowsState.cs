@@ -1,6 +1,6 @@
 using Libs.Core.Primitives;
 
-namespace Features.Playfield.Domain.States
+namespace Features.Playfield.Domain.Model
 {
     internal class TryClearRowsState : PlayfieldState
     {

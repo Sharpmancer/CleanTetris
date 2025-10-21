@@ -1,4 +1,4 @@
-namespace Features.Playfield.Domain.States
+namespace Features.Playfield.Domain.Model
 {
     internal class SpawnNewShapeState : PlayfieldState
     {

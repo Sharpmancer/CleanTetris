@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Features.Playfield.Domain
+namespace Features.Playfield.Domain.Model
 {
     internal class ClassicNesLookupGravityCalculationStrategy : IGravityCalculationStrategy
     {

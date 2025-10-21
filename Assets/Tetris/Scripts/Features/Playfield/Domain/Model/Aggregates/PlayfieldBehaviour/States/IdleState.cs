@@ -1,7 +1,8 @@
 using System;
+using Features.Playfield.Domain.Api;
 using Libs.Core.Lifecycle;
 
-namespace Features.Playfield.Domain.States
+namespace Features.Playfield.Domain.Model
 {
     internal class IdleState : PlayfieldState, ITickable
     {

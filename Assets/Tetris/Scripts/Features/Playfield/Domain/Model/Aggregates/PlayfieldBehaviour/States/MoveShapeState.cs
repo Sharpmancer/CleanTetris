@@ -1,6 +1,7 @@
 using System;
+using Features.Playfield.Domain.Api;
 
-namespace Features.Playfield.Domain.States
+namespace Features.Playfield.Domain.Model
 {
     internal class MoveShapeState : PlayfieldState
     {

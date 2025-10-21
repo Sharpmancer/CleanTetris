@@ -1,7 +1,7 @@
 using System;
 using Libs.Core.Primitives;
 
-namespace Features.Playfield.Domain
+namespace Features.Playfield.Domain.Api
 {
     public interface IPlayfieldEventsDispatcher
     {

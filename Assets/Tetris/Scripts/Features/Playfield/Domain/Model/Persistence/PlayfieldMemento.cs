@@ -1,6 +1,6 @@
 ﻿using Libs.Core.Patterns.Memento;
 
-namespace Features.Playfield.Domain
+namespace Features.Playfield.Domain.Model
 {
     public readonly struct PlayfieldMemento : IMemento
     {

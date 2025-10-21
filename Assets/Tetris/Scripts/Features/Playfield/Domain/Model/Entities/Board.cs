@@ -1,7 +1,7 @@
 using System;
 using Libs.Bitmasks;
 
-namespace Features.Playfield.Domain
+namespace Features.Playfield.Domain.Model
 {
     internal sealed class Board
     {

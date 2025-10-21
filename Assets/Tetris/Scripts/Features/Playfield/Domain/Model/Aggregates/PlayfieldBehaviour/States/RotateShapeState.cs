@@ -1,4 +1,6 @@
-namespace Features.Playfield.Domain.States
+using Features.Playfield.Domain.Api;
+
+namespace Features.Playfield.Domain.Model
 {
     internal class RotateShapeState : PlayfieldState
     {

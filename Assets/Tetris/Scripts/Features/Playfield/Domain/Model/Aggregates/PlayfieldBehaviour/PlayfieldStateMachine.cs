@@ -1,9 +1,8 @@
 using System;
 using System.Linq;
-using Features.Playfield.Domain.States;
 using Libs.Core.Lifecycle;
 
-namespace Features.Playfield.Domain
+namespace Features.Playfield.Domain.Model
 {
     internal class PlayfieldStateMachine : IDisposable
     {

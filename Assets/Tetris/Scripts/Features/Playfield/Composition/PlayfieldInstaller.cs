@@ -1,13 +1,15 @@
 using Features.Input.App;
 using Features.Playfield.App;
 using Features.Playfield.Domain;
+using Features.Playfield.Domain.Api;
+using Features.Playfield.Domain.Model;
 using Features.Playfield.Infrastructure;
 using Libs.Bootstrap;
 using Libs.Core.Patterns.Snapshot;
 using Libs.OneBitDisplay;
 using Libs.SceneManagement;
 using UnityEngine;
-using IPlayfieldEventsDispatcher = Features.Playfield.Domain.IPlayfieldEventsDispatcher;
+using IPlayfieldEventsDispatcher = Features.Playfield.Domain.Api.IPlayfieldEventsDispatcher;
 
 namespace Features.Playfield.Composition
 {
@@ -19,7 +21,7 @@ namespace Features.Playfield.Composition
         
         public override void Install(IInstallableContext context)
         {
-            var model = new Domain.Playfield(_boardSize.x, _boardSize.y, new ClassicNesLookupGravityCalculationStrategy(), new OneLevelPerTenRowsClearedCalculationStrategy());
+            var model = new Domain.Model.Playfield(_boardSize.x, _boardSize.y, new ClassicNesLookupGravityCalculationStrategy(), new OneLevelPerTenRowsClearedCalculationStrategy());
             context.RegisterContract<IPlayfieldEventsDispatcher>(model);
             context.RegisterContract<IPlayfieldStateProvider>(model);
             context.RegisterContract<IPlayfieldCommandsPort>(model);

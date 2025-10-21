@@ -1,11 +1,10 @@
 using System;
-using Features.Playfield.Domain.States;
+using Features.Playfield.Domain.Api;
 using Libs.Bitmasks;
 using Libs.Core.Lifecycle;
-using Libs.Core.Patterns.Memento;
 using Libs.Core.Primitives;
 
-namespace Features.Playfield.Domain
+namespace Features.Playfield.Domain.Model
 {
     internal class Playfield : IPlayfieldEventsDispatcher, IPlayfieldStateProvider, IPlayfieldCommandsPort, IPlayfieldPersistencePort,
         IInitializable, ITickable, IDisposable

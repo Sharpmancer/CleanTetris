@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Flags = System.Reflection.BindingFlags;
 
-namespace Features.Playfield.Domain
+namespace Features.Playfield.Domain.Model
 {
     /// <summary>
     /// Each shape is encoded as a 16-bit mask representing a 4×4 grid.<br/>

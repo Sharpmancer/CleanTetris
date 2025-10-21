@@ -1,4 +1,4 @@
-namespace Features.Playfield.Domain
+namespace Features.Playfield.Domain.Api
 {
     public interface IPlayfieldCommandsPort
     {
