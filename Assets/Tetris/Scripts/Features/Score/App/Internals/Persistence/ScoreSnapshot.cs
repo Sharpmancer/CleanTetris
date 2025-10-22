@@ -2,7 +2,7 @@
 using Features.Score.Domain.Model;
 using Libs.Core.Patterns.Snapshot;
 
-namespace Features.Score.App
+namespace Features.Score.App.Internals
 {
     [Serializable]
     public struct ScoreSnapshot : ISnapshot<ScoreMemento>

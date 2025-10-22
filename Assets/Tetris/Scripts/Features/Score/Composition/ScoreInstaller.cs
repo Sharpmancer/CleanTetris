@@ -1,5 +1,5 @@
 using Features.Playfield.App;
-using Features.Score.App;
+using Features.Score.App.Internals;
 using Features.Score.Domain.Model;
 using Features.Score.Infrastructure;
 using Libs.Bootstrap;

@@ -1,4 +1,5 @@
 using Features.Score.App;
+using Features.Score.App.Internals;
 using TMPro;
 using UnityEngine;
 

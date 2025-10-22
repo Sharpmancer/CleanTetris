@@ -2,15 +2,15 @@ using System;
 using Features.Score.Domain.Api;
 using Libs.Core.Lifecycle;
 
-namespace Features.Score.App
+namespace Features.Score.App.Internals
 {
-    public class ScoreDisplayPresenter : IInitializable, IDisposable
+    internal class ScoreDisplayPresenter : IInitializable, IDisposable
     {
         private readonly IScoreEventsDispatcher _scoreEvents;
         private readonly IScoreProvider _scoreProvider;
         private readonly IScoreDisplayView _scoreDisplay;
 
-        public ScoreDisplayPresenter(IScoreEventsDispatcher scoreEvents, IScoreDisplayView scoreDisplay, IScoreProvider scoreProvider)
+        internal ScoreDisplayPresenter(IScoreEventsDispatcher scoreEvents, IScoreDisplayView scoreDisplay, IScoreProvider scoreProvider)
         {
             _scoreEvents = scoreEvents;
             _scoreDisplay = scoreDisplay;

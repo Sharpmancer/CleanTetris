@@ -1,18 +1,16 @@
 using System;
 using Features.Playfield.App;
-using Features.Score.Domain;
 using Features.Score.Domain.Api;
 using Libs.Core.Lifecycle;
-using Libs.Core.Primitives;
 
-namespace Features.Score.App
+namespace Features.Score.App.Internals
 {
-    public class MarshalLinesClearedEvents : IInitializable, IDisposable
+    internal class MarshalLinesClearedEvents : IInitializable, IDisposable
     {
         private readonly ILinesClearedHandler _linesClearedHandler;
         private readonly IPlayfieldEventsDispatcher _gameEventsDispatcher;
 
-        public MarshalLinesClearedEvents(ILinesClearedHandler linesClearedHandler, IPlayfieldEventsDispatcher gameEventsDispatcher)
+        internal MarshalLinesClearedEvents(ILinesClearedHandler linesClearedHandler, IPlayfieldEventsDispatcher gameEventsDispatcher)
         {
             _linesClearedHandler = linesClearedHandler;
             _gameEventsDispatcher = gameEventsDispatcher;

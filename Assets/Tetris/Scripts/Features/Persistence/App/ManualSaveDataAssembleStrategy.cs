@@ -1,6 +1,7 @@
 ﻿using System;
 using Features.Playfield.App;
 using Features.Score.App;
+using Features.Score.App.Internals;
 using Libs.Core.Patterns.Snapshot;
 
 namespace Features.Persistence.App

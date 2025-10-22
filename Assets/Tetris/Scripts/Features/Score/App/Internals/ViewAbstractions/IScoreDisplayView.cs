@@ -1,4 +1,4 @@
-namespace Features.Score.App
+namespace Features.Score.App.Internals
 {
     public interface IScoreDisplayView
     {
