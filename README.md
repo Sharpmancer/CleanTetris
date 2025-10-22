@@ -2,31 +2,44 @@
 
 A Tetris implementation built to demonstrate **Domain-Driven Design (DDD)** and **layered architecture** principles in Unity/C#.
 
-This project is not about gameplay complexity — it’s a **code example** showcasing how to structure even a simple game using clear boundaries, dependency inversion, and testable domain logic.
+The goal of this project is to capture the essence of these architectural ideas and test their **practicality and synergy** in a small but complete system.  
+An ideal project of this type should achieve the following qualities:
+
+- **Ease of mental mapping** — no guesswork about where to find or place functionality.  
+  *(Example: Features → Playfield → App → Api → OnRowsCleared event)*
+
+- **Streamlined dependency structure** — only the Application layer can depend on other features;  
+  Domain is always isolated, and Infrastructure / Composition remain self-contained within each feature.
+
+- **Smooth iteration** — features, algorithms, or rules can be swapped via the Composition layer  
+  without ever modifying any business logic. *(Example: `PureRandom` and `BagOf7` shape-spawn strategies are injected interchangeably based on a `SpawnAlgorithm` enum value in the Composition layer)*
 
 ---
 
 ## ⚙️ Key Design Principles
 
-- **Dependency Inversion:** inner layers never depend on the outer ones  
-  (`Domain ← Application ← Infrastructure ← Composition`).
+- **Dependency Rule:** Source code dependencies always point inward `Domain ← Application ← Infrastructure ← Composition`.
+  Business logic never depends on implementation details or engine code.
 
-- **Explicit Boundaries:** each layer communicates only through dedicated interfaces and DTOs — internal types and state remain encapsulated.
+- **Dependency Inversion:** High-level policies (Domain/App) define interfaces; low-level layers (Infrastructure) implement them.
+  Both depend on abstractions, ensuring isolation and easy substitution.
 
-- **Reactive Event Flow:** Domain raises events → Application dispatches → Presentation updates.
+- **Explicit Boundaries:** Each layer communicates only through its public API; all other types remain internal to the assembly.
 
-- **Dependency Injection:** all dependencies are resolved in Composition via hierarchically organized contexts, ensuring clear ownership and lifetimes.
+- **Acyclic Dependencies (DAG):** Every feature-layer combination is isolated by its own `.asmdef` to guarantee no circular references.
 
-- **Vertical + Horizontal Slicing:** the project is divided vertically by independent features and horizontally by architectural layers, separating engine and business logic concerns.
+- **Reactive Event Flow:** Domain raises events → Application dispatches them → Presentation updates/other features react to changes.
 
-- **Shared Kernel & Reusability:** common, game-agnostic mechanisms (e.g., bitmasks, di) are extracted into standalone libraries following SoC and reusability reasons.
+- **Dependency Injection:** All dependencies are resolved in the Composition layer via hierarchical contexts, ensuring clear ownership and lifetimes.
 
----
+- **Vertical + Horizontal Slicing:** The project is organized vertically by **features** and horizontally by **layers**, separating game systems from each other and engine integration from domain logic respectively.
+
+- **Shared Kernel & Reusability:** Game-agnostic subsystems (e.g., Bitmask, DI, Core abstractions) live in independent libraries following SoC and reuse principles.
 
 ## 🏗️ Layers
 
 ### Domain
-- Defines the **core feature model**, incapsulating its data structures, behaviour and state.
+- Defines the **core feature model**, encapsulating its data structures, behaviour and state.
 - Exposes **interfaces** for application layer to interact with.
 - Pure C#, engine-agnostic.
 
@@ -45,14 +58,15 @@ This project is not about gameplay complexity — it’s a **code example** show
 
 ## 🧩 Features
 
-| Feature                                                             | Description |
-|---------------------------------------------------------------------|--------------|
-| [Playfield](Assets/Tetris/Scripts/Features/Playfield/README.md)     | Core Tetris loop — board, shapes and gameplay state machine. |
-| [Score](Assets/Tetris/Scripts/Features/Score/README.md)             | Independent scoring system reacting to gameplay events. |
-| [Input](Assets/Tetris/Scripts/Features/Input/README.md)             | Converts button presses into game commands with repeat timing and anti-mash logic. |
-| [MainMenu](Assets/Tetris/Scripts/Features/MainMenu/README.md)       | Entry UI and scene-flow hub. |
-| [Persistence](Assets/Tetris/Scripts/Features/Persistence/README.md) | Handles saving, loading, hydration, and cleanup of session data across features. |
+| Feature | Description | Layers                                |
+|---|---|---------------------------------------|
+| [Playfield](Assets/Tetris/Scripts/Features/Playfield/README.md) | Core Tetris loop — board, shapes, gameplay state machine. | **D** ✅ · **A** ✅ · **I** ✅ · **C** ✅ |
+| [Score](Assets/Tetris/Scripts/Features/Score/README.md) | Independent scoring reacting to gameplay events. | **D** ✅ · **A** ✅ · **I** ✅ · **C** ✅ |
+| [Input](Assets/Tetris/Scripts/Features/Input/README.md) | Converts button presses into commands with repeat/anti-mash. | **D** ❌ · **A** ✅ · **I** ✅ · **C** ✅ |
+| [MainMenu](Assets/Tetris/Scripts/Features/MainMenu/README.md) | Entry UI and scene-flow hub. | **D** ❌ · **A** ✅ · **I** ✅ · **C** ✅ |
+| [Persistence](Assets/Tetris/Scripts/Features/Persistence/README.md) | Saving, loading, hydration, cleanup across features. | **D** ❌ · **A** ✅ · **I** ❌ · **C** ✅  |
 
+*Legend: **D** = Domain, **A** = Application, **I** = Infrastructure, **C** = Composition*
 ## 🧰 Shared Libraries
 
 | Library | Description |
