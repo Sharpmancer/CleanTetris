@@ -45,12 +45,12 @@ This project is not about gameplay complexity — it’s a **code example** show
 
 ## 🧩 Features
 
-| Feature                                                       | Description |
-|---------------------------------------------------------------|--------------|
-| [Gameplay](Assets/Tetris/Scripts/Features/Gameplay/README.md) | Core Tetris loop — board, shapes and gameplay state machine. |
-| [Score](Assets/Tetris/Scripts/Features/Score/README.md)                             | Independent scoring system reacting to gameplay events. |
-| [Input](Assets/Tetris/Scripts/Features/Input/README.md)                             | Converts button presses into game commands with repeat timing and anti-mash logic. |
-| [MainMenu](Assets/Tetris/Scripts/Features/MainMenu/README.md)                       | Entry UI and scene-flow hub. |
+| Feature                                                             | Description |
+|---------------------------------------------------------------------|--------------|
+| [Playfield](Assets/Tetris/Scripts/Features/Playfield/README.md)     | Core Tetris loop — board, shapes and gameplay state machine. |
+| [Score](Assets/Tetris/Scripts/Features/Score/README.md)             | Independent scoring system reacting to gameplay events. |
+| [Input](Assets/Tetris/Scripts/Features/Input/README.md)             | Converts button presses into game commands with repeat timing and anti-mash logic. |
+| [MainMenu](Assets/Tetris/Scripts/Features/MainMenu/README.md)       | Entry UI and scene-flow hub. |
 | [Persistence](Assets/Tetris/Scripts/Features/Persistence/README.md) | Handles saving, loading, hydration, and cleanup of session data across features. |
 
 ## 🧰 Shared Libraries
