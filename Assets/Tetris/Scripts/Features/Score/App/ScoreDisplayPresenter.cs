@@ -1,5 +1,5 @@
 using System;
-using Features.Score.Domain;
+using Features.Score.Domain.Api;
 using Libs.Core.Lifecycle;
 
 namespace Features.Score.App
@@ -7,12 +7,14 @@ namespace Features.Score.App
     public class ScoreDisplayPresenter : IInitializable, IDisposable
     {
         private readonly IScoreEventsDispatcher _scoreEvents;
+        private readonly IScoreProvider _scoreProvider;
         private readonly IScoreDisplayView _scoreDisplay;
 
-        public ScoreDisplayPresenter(IScoreEventsDispatcher scoreEvents, IScoreDisplayView scoreDisplay)
+        public ScoreDisplayPresenter(IScoreEventsDispatcher scoreEvents, IScoreDisplayView scoreDisplay, IScoreProvider scoreProvider)
         {
             _scoreEvents = scoreEvents;
             _scoreDisplay = scoreDisplay;
+            _scoreProvider = scoreProvider;
         }
 
         public void Initialize()
@@ -25,6 +27,6 @@ namespace Features.Score.App
             _scoreEvents.OnScoreChanged -= UpdateScore;
 
         private void UpdateScore() => 
-            _scoreDisplay.UpdateScore(_scoreEvents.Points);
+            _scoreDisplay.UpdateScore(_scoreProvider.ScorePoints);
     }
 }

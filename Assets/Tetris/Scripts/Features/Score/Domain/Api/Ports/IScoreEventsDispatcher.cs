@@ -1,11 +1,9 @@
 using System;
 
-namespace Features.Score.Domain
+namespace Features.Score.Domain.Api
 {
     public interface IScoreEventsDispatcher
     {
-        int Points { get; }
-        event Action<int> OnPointsAdded;
         event Action OnScoreChanged;
     }
 }

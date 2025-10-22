@@ -1,6 +1,6 @@
 ﻿using Libs.Core.Patterns.Memento;
 
-namespace Features.Score.Domain
+namespace Features.Score.Domain.Model
 {
     public readonly struct ScoreMemento : IMemento
     {

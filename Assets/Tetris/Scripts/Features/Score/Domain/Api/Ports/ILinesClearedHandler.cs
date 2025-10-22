@@ -1,4 +1,4 @@
-namespace Features.Score.Domain
+namespace Features.Score.Domain.Api
 {
     public interface ILinesClearedHandler
     {

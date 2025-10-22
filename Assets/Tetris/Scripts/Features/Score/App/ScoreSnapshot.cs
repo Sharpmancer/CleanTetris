@@ -1,5 +1,5 @@
 ﻿using System;
-using Features.Score.Domain;
+using Features.Score.Domain.Model;
 using Libs.Core.Patterns.Snapshot;
 
 namespace Features.Score.App
