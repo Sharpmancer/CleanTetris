@@ -5,8 +5,8 @@ A Tetris implementation built to demonstrate **Domain-Driven Design (DDD)** and 
 The goal of this project is to capture the essence of these architectural ideas and test their **practicality and synergy** in a small but complete system.  
 An ideal project of this type should achieve the following qualities:
 
-- **Ease of mental mapping** — no guesswork about where to find or place functionality.  
-  *(Example: Features → Playfield → App → Api → OnRowsCleared event)*
+- **Ease of mental mapping** — no guesswork about where to find or place functionality. Each placement follows an intuitive folder path: Feature(Playfield, Score, ...) → Layer(Domain, Infra, ...) → Visibility(Api, Internals) → Role(Value Objects, Algorithms, Aggregates...) → Your type.  
+  *(Example: Features → Playfield → Domain → Model → Value Objects → GridDirection.cs)*
 
 - **Streamlined dependency structure** — only the Application layer can depend on other features;  
   Domain is always isolated, and Infrastructure / Composition remain self-contained within each feature.
