@@ -1,8 +1,7 @@
 using System;
 using Features.Playfield.Domain.Api;
-using Libs.Bitmasks;
 using Libs.Core.Lifecycle;
-using Libs.Core.Primitives;
+using Sharpmancer.Libs.Bitmasks;
 
 namespace Features.Playfield.Domain.Model
 {

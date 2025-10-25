@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.sharpmancer.bitmasks": {
+      "version": "https://github.com/Sharpmancer/com.sharpmancer.bitmasks.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "b8bb9425a4627855a5210288f946ff5ca48e1632"
+    },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
       "depth": 1,

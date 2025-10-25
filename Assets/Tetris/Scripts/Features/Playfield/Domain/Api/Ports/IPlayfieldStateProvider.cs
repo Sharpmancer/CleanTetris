@@ -1,4 +1,4 @@
-using Libs.Bitmasks;
+using Sharpmancer.Libs.Bitmasks;
 
 namespace Features.Playfield.Domain.Api
 {

@@ -69,15 +69,15 @@ An ideal project of this type should achieve the following qualities:
 *Legend: **D** = Domain, **A** = Application, **I** = Infrastructure, **C** = Composition*
 ## 🧰 Shared Libraries
 
-| Library | Description |
-|----------|--------------|
-| [Core](Assets/Tetris/Scripts/Libs/Core/README.md) | Common abstractions and interfaces (`IInitializable`, `ITickable`, etc.). |
-| [Bitmasks](Assets/Tetris/Scripts/Libs/Bitmasks/README.md) | Utility for efficient 1D and 2D bitmask operations. |
-| [Bootstrap](Assets/Tetris/Scripts/Libs/Bootstrap/README.md) | Dependency Injection setup and installer base types. |
-| [SceneManagement](Assets/Tetris/Scripts/Libs/SceneManagement/README.md) | Scene transition helpers. |
-| [OneBitDisplay](Assets/Tetris/Scripts/Libs/OneBitDisplay/README.md) | Minimalistic grid-based pixel display renderer. |
-| [Persistence](Assets/Tetris/Scripts/Libs/Persistence/README.md) | Modular, strategy-based save/load system supporting serialization, encryption, and atomic file operations. |
-| [UnityUtils](Assets/Tetris/Scripts/Libs/UnityUtils/README.md) | Making life easier. |
+| Library                                                                         | Description |
+|---------------------------------------------------------------------------------|--------------|
+| [Core](Assets/Tetris/Scripts/Libs/Core/README.md)                               | Common abstractions and interfaces (`IInitializable`, `ITickable`, etc.). |
+| [Bitmasks(UPM)](https://github.com/sharpmancer/com.sharpmancer.bitmasks#readme) | Utility for efficient 1D and 2D bitmask operations. |
+| [Bootstrap](Assets/Tetris/Scripts/Libs/Bootstrap/README.md)                     | Dependency Injection setup and installer base types. |
+| [SceneManagement](Assets/Tetris/Scripts/Libs/SceneManagement/README.md)         | Scene transition helpers. |
+| [OneBitDisplay](Assets/Tetris/Scripts/Libs/OneBitDisplay/README.md)             | Minimalistic grid-based pixel display renderer. |
+| [Persistence](Assets/Tetris/Scripts/Libs/Persistence/README.md)                 | Modular, strategy-based save/load system supporting serialization, encryption, and atomic file operations. |
+| [UnityUtils](Assets/Tetris/Scripts/Libs/UnityUtils/README.md)                   | Making life easier. |
 
 ---
 

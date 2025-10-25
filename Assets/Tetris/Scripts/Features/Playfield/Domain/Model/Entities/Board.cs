@@ -1,5 +1,5 @@
 using System;
-using Libs.Bitmasks;
+using Sharpmancer.Libs.Bitmasks;
 
 namespace Features.Playfield.Domain.Model
 {
