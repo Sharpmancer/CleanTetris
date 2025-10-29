@@ -1,6 +1,6 @@
 using System;
 
-namespace Features.Input.App
+namespace Features.Input.App.Api
 {
     /// <summary>
     /// Commands received from a physical input, used as a mask in case of multiple buttons pressed

@@ -1,5 +1,7 @@
-using Features.Input.App;
-using Features.Input.Infrastructure;
+using Features.Input.App.Api;
+using Features.Input.App.Internals;
+using Features.Input.Infrastructure.Adapters;
+using Features.Input.Infrastructure.Config;
 using Libs.Bootstrap;
 using UnityEngine;
 

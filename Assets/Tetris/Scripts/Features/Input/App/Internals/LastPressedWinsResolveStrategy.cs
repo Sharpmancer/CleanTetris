@@ -1,6 +1,7 @@
+using Features.Input.App.Api;
 using Sharpmancer.Libs.Bitmasks;
 
-namespace Features.Input.App
+namespace Features.Input.App.Internals
 {
     internal class LastPressedWinsResolveStrategy : IResolveInputStrategy
     {

@@ -1,10 +1,11 @@
 using System;
 using System.Linq;
-using Features.Input.App;
+using Features.Input.App.Api;
+using Features.Input.Infrastructure.Config;
 using Libs.Core.Lifecycle;
 using UnityEngine;
 
-namespace Features.Input.Infrastructure
+namespace Features.Input.Infrastructure.Adapters
 {
     public sealed class UnityInputAdapter : MonoBehaviour, ITickable, IInitializable
     {

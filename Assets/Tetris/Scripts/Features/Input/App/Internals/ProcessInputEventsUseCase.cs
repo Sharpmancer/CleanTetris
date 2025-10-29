@@ -1,7 +1,8 @@
 using System;
+using Features.Input.App.Api;
 using Libs.Core.Lifecycle;
 
-namespace Features.Input.App
+namespace Features.Input.App.Internals
 {
     internal class ProcessInputEventsUseCase : IInboundCommandsPort, IOutboundInputCommandDispatcher, ITickable, IInputStateResetter
     {

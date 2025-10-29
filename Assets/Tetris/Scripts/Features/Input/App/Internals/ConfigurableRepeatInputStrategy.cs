@@ -1,4 +1,6 @@
-namespace Features.Input.App
+using Features.Input.App.Api;
+
+namespace Features.Input.App.Internals
 {
     /// <summary>
     /// Repeats held input indefinitely after a config-sourced delay each config-sourced interval   

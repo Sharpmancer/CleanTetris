@@ -1,7 +1,7 @@
-using Features.Input.App;
+using Features.Input.App.Api;
 using UnityEngine;
 
-namespace Features.Input.Infrastructure
+namespace Features.Input.Infrastructure.Config
 {
     public interface IInputCommandsToKeyCodesMapping
     {

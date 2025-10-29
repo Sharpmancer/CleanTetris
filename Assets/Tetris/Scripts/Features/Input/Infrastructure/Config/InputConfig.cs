@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Features.Input.App;
+using Features.Input.App.Api;
 using UnityEngine;
 
-namespace Features.Input.Infrastructure
+namespace Features.Input.Infrastructure.Config
 {
     [CreateAssetMenu(menuName = "Configs/InputConfig", fileName = "InputConfig", order = 0)]
     public class InputConfig : ScriptableObject, IInputCommandsToKeyCodesMapping, IRepeatInputStrategyConfig

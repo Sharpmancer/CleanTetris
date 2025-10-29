@@ -1,4 +1,4 @@
-namespace Features.Input.App
+namespace Features.Input.App.Internals
 {
     internal interface IRepeatHeldInputStrategy
     {

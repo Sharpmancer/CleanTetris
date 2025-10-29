@@ -1,4 +1,6 @@
-namespace Features.Input.App
+using Features.Input.App.Api;
+
+namespace Features.Input.App.Internals
 {
     internal interface IResolveInputStrategy
     {

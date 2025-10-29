@@ -1,4 +1,4 @@
-namespace Features.Input.App
+namespace Features.Input.App.Api
 {
     public interface IRepeatInputStrategyConfig
     {
