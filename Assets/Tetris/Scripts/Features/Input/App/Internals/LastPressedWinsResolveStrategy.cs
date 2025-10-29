@@ -2,7 +2,7 @@ using Sharpmancer.Libs.Bitmasks;
 
 namespace Features.Input.App
 {
-    public class LastPressedWinsResolveStrategy : IResolveInputStrategy
+    internal class LastPressedWinsResolveStrategy : IResolveInputStrategy
     {
         public InboundCommands Resolve(InboundCommands activeFlag, InboundCommands lastMask, InboundCommands currentMask)
         {

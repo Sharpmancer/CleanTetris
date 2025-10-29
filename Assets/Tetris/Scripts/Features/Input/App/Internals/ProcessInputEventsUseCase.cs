@@ -3,7 +3,7 @@ using Libs.Core.Lifecycle;
 
 namespace Features.Input.App
 {
-    public class ProcessInputEventsUseCase : IInboundCommandsPort, IOutboundInputCommandDispatcher, ITickable, IInputStateResetter
+    internal class ProcessInputEventsUseCase : IInboundCommandsPort, IOutboundInputCommandDispatcher, ITickable, IInputStateResetter
     {
         private readonly IRepeatHeldInputStrategy _repeatInputStrategy;
         private readonly IResolveInputStrategy _resolveStrategy;
@@ -13,7 +13,7 @@ namespace Features.Input.App
 
         public event Action<OutboundCommand> OnNewCommand;
 
-        public ProcessInputEventsUseCase(IRepeatHeldInputStrategy repeatInputStrategy, IResolveInputStrategy resolveStrategy)
+        internal ProcessInputEventsUseCase(IRepeatHeldInputStrategy repeatInputStrategy, IResolveInputStrategy resolveStrategy)
         {
             _repeatInputStrategy = repeatInputStrategy;
             _resolveStrategy = resolveStrategy;

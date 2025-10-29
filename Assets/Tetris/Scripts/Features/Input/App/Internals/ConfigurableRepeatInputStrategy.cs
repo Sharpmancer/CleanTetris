@@ -3,13 +3,13 @@ namespace Features.Input.App
     /// <summary>
     /// Repeats held input indefinitely after a config-sourced delay each config-sourced interval   
     /// </summary>
-    public class ConfigurableRepeatInputStrategy : IRepeatHeldInputStrategy
+    internal class ConfigurableRepeatInputStrategy : IRepeatHeldInputStrategy
     {
         private readonly IRepeatInputStrategyConfig _config;
         private float _heldTime;
         private int _repeatCount;
         
-        public ConfigurableRepeatInputStrategy(IRepeatInputStrategyConfig config) => 
+        internal ConfigurableRepeatInputStrategy(IRepeatInputStrategyConfig config) => 
             _config = config;
 
         public void ProcessTimePassed(float timeDelta, out bool repeat)

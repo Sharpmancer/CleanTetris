@@ -1,6 +1,6 @@
 namespace Features.Input.App
 {
-    public interface IResolveInputStrategy
+    internal interface IResolveInputStrategy
     {
         InboundCommands Resolve(InboundCommands activeFlag, InboundCommands lastMask, InboundCommands currentMask);
     }
